@@ -1,0 +1,25 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Inferencia e introducción a los modelos estadísticos con R"
+  subtitle: "Curso intersemestral de Invierno - Posgrado de Ciencias Políticas y Sociales"
+  author: "Ana Escoto"
+
+  date: "01/09/2023"
+  chapters:
+    - index.qmd
+    - instala.qmd
+    - P1.qmd
+  
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+  pdf: 
+    documentclass: report
+
+editor: visual
+

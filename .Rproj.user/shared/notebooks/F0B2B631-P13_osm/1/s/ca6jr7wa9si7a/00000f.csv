@@ -1,0 +1,98 @@
+"0","remotes::install_github(""ropensci/rnaturalearthdata"")"
+"2","Downloading GitHub repo ropensci/rnaturalearthdata@HEAD
+"
+"2","Running `R CMD build`...
+"
+"1","* checking for file ‘/private/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T/RtmpBpieVM/remotes68e2386bb1f9/ropensci-rnaturalearthdata-352e548/DESCRIPTION’ ... OK"
+"1","
+"
+"1","* preparing ‘rnaturalearthdata’:"
+"1","
+"
+"1","* checking DESCRIPTION meta-information ... OK"
+"1","
+"
+"1","* checking for LF line-endings in source and make files and shell scripts"
+"1","
+"
+"1","* checking for empty or unneeded directories"
+"1","
+"
+"1","* building ‘rnaturalearthdata_0.2.0.tar.gz’"
+"1","
+"
+"2","* installing *source* package ‘rnaturalearthdata’ ...
+"
+"2","** using staged installation
+"
+"2","** R
+"
+"2","** data
+"
+"2","*** moving datasets to lazyload DB
+"
+"2","** byte-compile and prepare package for lazy loading
+"
+"2","** help
+"
+"2","*** installing help indices
+"
+"2","** building package indices
+"
+"2","** testing if installed package can be loaded from temporary location
+"
+"2","** testing if installed package can be loaded from final location
+"
+"2","** testing if installed package keeps a record of temporary installation path
+"
+"2","* DONE (rnaturalearthdata)
+"
+"0","remotes::install_github(""ropensci/rnaturalearthhires"")"
+"2","Downloading GitHub repo ropensci/rnaturalearthhires@HEAD
+"
+"2","Running `R CMD build`...
+"
+"1","* checking for file ‘/private/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T/RtmpBpieVM/remotes68e22a1ac79b/ropensci-rnaturalearthhires-2ed7a93/DESCRIPTION’ ... OK"
+"1","
+"
+"1","* preparing ‘rnaturalearthhires’:"
+"1","
+"
+"1","* checking DESCRIPTION meta-information ... OK"
+"1","
+"
+"1","* checking for LF line-endings in source and make files and shell scripts"
+"1","
+"
+"1","* checking for empty or unneeded directories"
+"1","
+"
+"1","* building ‘rnaturalearthhires_0.2.0.tar.gz’"
+"1","
+"
+"2","* installing *source* package ‘rnaturalearthhires’ ...
+"
+"2","** using staged installation
+"
+"2","** R
+"
+"2","** data
+"
+"2","*** moving datasets to lazyload DB
+"
+"2","** byte-compile and prepare package for lazy loading
+"
+"2","** help
+"
+"2","*** installing help indices
+"
+"2","** building package indices
+"
+"2","** testing if installed package can be loaded from temporary location
+"
+"2","** testing if installed package can be loaded from final location
+"
+"2","** testing if installed package keeps a record of temporary installation path
+"
+"2","* DONE (rnaturalearthhires)
+"

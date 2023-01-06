@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Inferencia e introducción a los modelos estadísticos con R - 1&nbsp; Introducción: {dplyr} y {ggplot2}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./instala.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción: <code>{dplyr}</code> y <code>{ggplot2}</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Inferencia e introducción a los modelos estadísticos con R</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introducción al curso</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./instala.html" class="sidebar-item-text sidebar-link">Instalación de R y Rstudio</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción: <code>{dplyr}</code> y <code>{ggplot2}</code></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link active" data-scroll-target="#paquetes"><span class="toc-section-number">1.1</span>  Paquetes</a></li>
+  <li><a href="#cargando-los-datos" id="toc-cargando-los-datos" class="nav-link" data-scroll-target="#cargando-los-datos"><span class="toc-section-number">1.2</span>  Cargando los datos</a></li>
+  <li><a href="#un-poquito-de-dplyr-y-limpieza" id="toc-un-poquito-de-dplyr-y-limpieza" class="nav-link" data-scroll-target="#un-poquito-de-dplyr-y-limpieza"><span class="toc-section-number">1.3</span>  Un poquito de <code>{dplyr}</code> y limpieza</a>
+  <ul class="collapse">
+  <li><a href="#primero-los-pipes" id="toc-primero-los-pipes" class="nav-link" data-scroll-target="#primero-los-pipes"><span class="toc-section-number">1.3.1</span>  Primero, los pipes</a></li>
+  <li><a href="#limpieza-de-nombres-con-janitor" id="toc-limpieza-de-nombres-con-janitor" class="nav-link" data-scroll-target="#limpieza-de-nombres-con-janitor"><span class="toc-section-number">1.3.2</span>  Limpieza de nombres con <code>{janitor}</code></a></li>
+  </ul></li>
+  <li><a href="#select-y-filter" id="toc-select-y-filter" class="nav-link" data-scroll-target="#select-y-filter"><span class="toc-section-number">1.4</span>  <code>select()</code> y <code>filter()</code></a></li>
+  <li><a href="#tabulados-con-tabyl" id="toc-tabulados-con-tabyl" class="nav-link" data-scroll-target="#tabulados-con-tabyl"><span class="toc-section-number">1.5</span>  Tabulados con <code>tabyl()</code></a>
+  <ul class="collapse">
+  <li><a href="#cálculo-de-frecuencias" id="toc-cálculo-de-frecuencias" class="nav-link" data-scroll-target="#cálculo-de-frecuencias"><span class="toc-section-number">1.5.1</span>  Cálculo de frecuencias</a></li>
+  <li><a href="#totales-y-porcentajes" id="toc-totales-y-porcentajes" class="nav-link" data-scroll-target="#totales-y-porcentajes"><span class="toc-section-number">1.5.2</span>  Totales y porcentajes</a></li>
+  </ul></li>
+  <li><a href="#grammar-of-tables-gt" id="toc-grammar-of-tables-gt" class="nav-link" data-scroll-target="#grammar-of-tables-gt"><span class="toc-section-number">1.6</span>  <em>Grammar of tables: gt</em></a></li>
+  <li><a href="#descriptivos-para-variables-cuantitativas" id="toc-descriptivos-para-variables-cuantitativas" class="nav-link" data-scroll-target="#descriptivos-para-variables-cuantitativas"><span class="toc-section-number">1.7</span>  Descriptivos para variables cuantitativas</a>
+  <ul class="collapse">
+  <li><a href="#medidas-numéricas-básicas" id="toc-medidas-numéricas-básicas" class="nav-link" data-scroll-target="#medidas-numéricas-básicas"><span class="toc-section-number">1.7.1</span>  Medidas numéricas básicas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción: <code>{dplyr}</code> y <code>{ggplot2}</code></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="paquetes" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="paquetes"><span class="header-section-number">1.1</span> Paquetes</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)<span class="co">#instala pacman si se requiere</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: pacman</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               readxl,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               writexl, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               haven,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               sjlabelled, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>               janitor,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>               infer, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>               ggpubr,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>               magrittr,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>               gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cargando-los-datos" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="cargando-los-datos"><span class="header-section-number">1.2</span> Cargando los datos</h2>
+<p>Desde STATA</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_dta</span>(<span class="st">"./datos/tlaxt322.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desde Excel:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ICI_2021 <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"./datos/ICI_2021.xlsx"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">sheet =</span> <span class="st">"para_importar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...2`</code></pre>
+</div>
+</div>
+</section>
+<section id="un-poquito-de-dplyr-y-limpieza" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="un-poquito-de-dplyr-y-limpieza"><span class="header-section-number">1.3</span> Un poquito de <code>{dplyr}</code> y limpieza</h2>
+<section id="primero-los-pipes" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="primero-los-pipes"><span class="header-section-number">1.3.1</span> Primero, los pipes</h3>
+<p>R utiliza dos pipes el nativo <code>|&gt;</code> y el pipe que está en <code>{dplyr}</code> <code>%&gt;%</code>. Algunas de las diferencias las puedes checar acá <a href="https://eliocamp.github.io/codigo-r/2021/05/r-pipa-nativa/" class="uri">https://eliocamp.github.io/codigo-r/2021/05/r-pipa-nativa/</a></p>
+<p>En estas prácticas utilizaremos el segundo, pero son muy parecidos y para que esta instructora recicle algunos de sus códigos viejos. Pero funcionan igual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">|&gt;</span> <span class="co">#pipe nativo, no necesita instalación</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 114
+  r_def           loc   mun   est est_d…¹ est_d…²  ageb t_loc…³ t_loc…⁴ cd_a    
+  &lt;dbl+lbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt;
+1 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+2 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+3 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+4 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+5 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+6 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+# … with 104 more variables: ent &lt;dbl+lbl&gt;, con &lt;dbl&gt;, upm &lt;dbl&gt;,
+#   d_sem &lt;dbl+lbl&gt;, n_pro_viv &lt;dbl&gt;, v_sel &lt;dbl+lbl&gt;, n_hog &lt;dbl+lbl&gt;,
+#   h_mud &lt;dbl+lbl&gt;, n_ent &lt;dbl+lbl&gt;, per &lt;dbl+lbl&gt;, n_ren &lt;dbl+lbl&gt;,
+#   c_res &lt;dbl+lbl&gt;, par_c &lt;dbl&gt;, sex &lt;dbl+lbl&gt;, eda &lt;dbl&gt;, nac_dia &lt;dbl+lbl&gt;,
+#   nac_mes &lt;dbl+lbl&gt;, nac_anio &lt;dbl&gt;, l_nac_c &lt;dbl+lbl&gt;, cs_p12 &lt;dbl+lbl&gt;,
+#   cs_p13_1 &lt;dbl+lbl&gt;, cs_p13_2 &lt;dbl+lbl&gt;, cs_p14_c &lt;chr&gt;, cs_p15 &lt;dbl+lbl&gt;,
+#   cs_p16 &lt;dbl+lbl&gt;, cs_p17 &lt;dbl+lbl&gt;, n_hij &lt;dbl+lbl&gt;, e_con &lt;dbl+lbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span>  <span class="co">#pipe de dplyr, necesita instalación de dplyr en tidyverse</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 114
+  r_def           loc   mun   est est_d…¹ est_d…²  ageb t_loc…³ t_loc…⁴ cd_a    
+  &lt;dbl+lbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt;
+1 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+2 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+3 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+4 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+5 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+6 0 [Entrevist…    NA    31    20     413      NA     0 2 [Loc… NA      39 [Tla…
+# … with 104 more variables: ent &lt;dbl+lbl&gt;, con &lt;dbl&gt;, upm &lt;dbl&gt;,
+#   d_sem &lt;dbl+lbl&gt;, n_pro_viv &lt;dbl&gt;, v_sel &lt;dbl+lbl&gt;, n_hog &lt;dbl+lbl&gt;,
+#   h_mud &lt;dbl+lbl&gt;, n_ent &lt;dbl+lbl&gt;, per &lt;dbl+lbl&gt;, n_ren &lt;dbl+lbl&gt;,
+#   c_res &lt;dbl+lbl&gt;, par_c &lt;dbl&gt;, sex &lt;dbl+lbl&gt;, eda &lt;dbl&gt;, nac_dia &lt;dbl+lbl&gt;,
+#   nac_mes &lt;dbl+lbl&gt;, nac_anio &lt;dbl&gt;, l_nac_c &lt;dbl+lbl&gt;, cs_p12 &lt;dbl+lbl&gt;,
+#   cs_p13_1 &lt;dbl+lbl&gt;, cs_p13_2 &lt;dbl+lbl&gt;, cs_p14_c &lt;chr&gt;, cs_p15 &lt;dbl+lbl&gt;,
+#   cs_p16 &lt;dbl+lbl&gt;, cs_p17 &lt;dbl+lbl&gt;, n_hij &lt;dbl+lbl&gt;, e_con &lt;dbl+lbl&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="limpieza-de-nombres-con-janitor" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="limpieza-de-nombres-con-janitor"><span class="header-section-number">1.3.2</span> Limpieza de nombres con <code>{janitor}</code></h3>
+<p>Este paso también nos permitirá enseñar otro <em>pipe</em> que está en el paquete <code>{magrittr}</code>.</p>
+<p>Los nombres de una base de datos son los nombres de las columnas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tlaxt322)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "r_def"      "loc"        "mun"        "est"        "est_d_tri" 
+  [6] "est_d_men"  "ageb"       "t_loc_tri"  "t_loc_men"  "cd_a"      
+ [11] "ent"        "con"        "upm"        "d_sem"      "n_pro_viv" 
+ [16] "v_sel"      "n_hog"      "h_mud"      "n_ent"      "per"       
+ [21] "n_ren"      "c_res"      "par_c"      "sex"        "eda"       
+ [26] "nac_dia"    "nac_mes"    "nac_anio"   "l_nac_c"    "cs_p12"    
+ [31] "cs_p13_1"   "cs_p13_2"   "cs_p14_c"   "cs_p15"     "cs_p16"    
+ [36] "cs_p17"     "n_hij"      "e_con"      "cs_p20a_1"  "cs_p20a_c" 
+ [41] "cs_p20b_1"  "cs_p20b_c"  "cs_p20c_1"  "cs_ad_mot"  "cs_p21_des"
+ [46] "cs_ad_des"  "cs_nr_mot"  "cs_p23_des" "cs_nr_ori"  "ur"        
+ [51] "zona"       "salario"    "fac_tri"    "fac_men"    "clase1"    
+ [56] "clase2"     "clase3"     "pos_ocu"    "seg_soc"    "rama"      
+ [61] "c_ocu11c"   "ing7c"      "dur9c"      "emple7c"    "medica5c"  
+ [66] "buscar5c"   "rama_est1"  "rama_est2"  "dur_est"    "ambito1"   
+ [71] "ambito2"    "tue1"       "tue2"       "tue3"       "busqueda"  
+ [76] "d_ant_lab"  "d_cexp_est" "dur_des"    "sub_o"      "s_clasifi" 
+ [81] "remune2c"   "pre_asa"    "tip_con"    "dispo"      "nodispo"   
+ [86] "c_inac5c"   "pnea_est"   "niv_ins"    "eda5c"      "eda7c"     
+ [91] "eda12c"     "eda19c"     "hij5c"      "domestico"  "anios_esc" 
+ [96] "hrsocup"    "ingocup"    "ing_x_hrs"  "tpg_p8a"    "tcco"      
+[101] "cp_anoc"    "imssissste" "ma48me1sm"  "p14apoyos"  "scian"     
+[106] "t_tra"      "emp_ppal"   "tue_ppal"   "trans_ppal" "mh_fil2"   
+[111] "mh_col"     "sec_ins"    "tipo"       "mes_cal"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ICI_2021)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "País"                                                                  
+ [2] "...2"                                                                  
+ [3] "Protección de derechos humanos"                                        
+ [4] "Homicidios dolosos"                                                    
+ [5] "Confianza en la policía"                                               
+ [6] "Independencia del poder judicial"                                      
+ [7] "Protección de derechos de propiedad"                                   
+ [8] "Tiempo para resolver quiebras"                                         
+ [9] "Cumplimiento de contratos"                                             
+[10] "Índice de Estado de Derecho"                                           
+[11] "Índice de Paz Global"                                                  
+[12] "Contaminación del aire"                                                
+[13] "Emisiones de CO2"                                                      
+[14] "Recursos hídricos renovables"                                          
+[15] "Áreas naturales protegidas"                                            
+[16] "Superficie forestal perdida"                                           
+[17] "Uso de pesticidas"                                                     
+[18] "Fuentes de energía no contaminantes"                                   
+[19] "Índice de vulnerabilidad a efectos del cambio climático"               
+[20] "Índice de Gini"                                                        
+[21] "Índice Global de Brecha de Género"                                     
+[22] "Mujeres en la PEA"                                                     
+[23] "Dependientes de la PEA"                                                
+[24] "Acceso a agua potable"                                                 
+[25] "Acceso a alcantarillado"                                               
+[26] "Analfabetismo"                                                         
+[27] "Escolaridad promedio"                                                  
+[28] "Calidad educativa"                                                     
+[29] "Esperanza de vida"                                                     
+[30] "Mortalidad infantil"                                                   
+[31] "Cobertura de vacunación"                                               
+[32] "Médicos y médicas"                                                     
+[33] "Gasto en salud per cápita"                                             
+[34] "Gasto en salud por cuenta propia"                                      
+[35] "Estabilidad política y ausencia de violencia"                          
+[36] "Interferencia militar en el Estado de derecho o en el proceso político"
+[37] "Libertades civiles"                                                    
+[38] "Índice de Percepción de Corrupción"                                    
+[39] "Disponibilidad de información pública"                                 
+[40] "Participación electoral"                                               
+[41] "Equidad en los congresos"                                              
+[42] "Índice de efectividad del gobierno"                                    
+[43] "Miembro de la Alianza para el Gobierno Abierto"                        
+[44] "Índice de desarrollo de Gobierno Electrónico"                          
+[45] "Facilidad para abrir una empresa"                                      
+[46] "Tiempo para preparar y pagar impuestos"                                
+[47] "Ingresos fiscales"                                                     
+[48] "Finanzas sanas"                                                        
+[49] "Carga impositiva"                                                      
+[50] "Edad efectiva de retiro"                                               
+[51] "Flexibilidad de las leyes laborales"                                   
+[52] "Productividad media del trabajo"                                       
+[53] "Valor agregado de la industria"                                        
+[54] "Índice de transparencia y regulación de la propiedad privada"          
+[55] "Crecimiento del PIB"                                                   
+[56] "Crecimiento promedio del PIB"                                          
+[57] "Inflación"                                                             
+[58] "Inflación promedio"                                                    
+[59] "Desempleo"                                                             
+[60] "Deuda externa"                                                         
+[61] "Calificación de deuda"                                                 
+[62] "Reservas"                                                              
+[63] "Libertad económica"                                                    
+[64] "Índice Riesgos de seguridad energética"                                
+[65] "Líneas móviles"                                                        
+[66] "Usuarios de internet"                                                  
+[67] "Servidores de internet seguros"                                        
+[68] "Flujo de pasajeros aéreos"                                             
+[69] "Índice de desempeño logístico (transporte)"                            
+[70] "Tráfico portuario de contenedores"                                     
+[71] "Penetración del sistema financiero privado"                            
+[72] "Capitalización del mercado de valores"                                 
+[73] "Socios comerciales efectivos"                                          
+[74] "Apertura comercial"                                                    
+[75] "Diversificación de las exportaciones"                                  
+[76] "Diversificación de las importaciones"                                  
+[77] "Libertad comercial"                                                    
+[78] "Inversión extranjera directa (neta)"                                   
+[79] "Inversión Extranjera Directa neta promedio"                            
+[80] "Ingresos por turismo"                                                  
+[81] "Gasto en investigación y desarrollo"                                   
+[82] "Coeficiente de invención"                                              
+[83] "Artículos científicos y técnicos"                                      
+[84] "Exportaciones de alta tecnología"                                      
+[85] "Índice de Complejidad Económica"                                       
+[86] "Empresas ISO 9001"                                                     
+[87] "PIB en servicios"                                                      
+[88] "0"                                                                     
+[89] "Inversión (FBCF)"                                                      
+[90] "Talento"                                                               </code></pre>
+</div>
+</div>
+<p>Como vemos en las bases hay mayúsculas, caracteres especiales y demás. Esto lo podemos cambiar</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ICI_2021<span class="ot">&lt;-</span>ICI_2021 <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ICI_2021)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "pais"                                                                  
+ [2] "x2"                                                                    
+ [3] "proteccion_de_derechos_humanos"                                        
+ [4] "homicidios_dolosos"                                                    
+ [5] "confianza_en_la_policia"                                               
+ [6] "independencia_del_poder_judicial"                                      
+ [7] "proteccion_de_derechos_de_propiedad"                                   
+ [8] "tiempo_para_resolver_quiebras"                                         
+ [9] "cumplimiento_de_contratos"                                             
+[10] "indice_de_estado_de_derecho"                                           
+[11] "indice_de_paz_global"                                                  
+[12] "contaminacion_del_aire"                                                
+[13] "emisiones_de_co2"                                                      
+[14] "recursos_hidricos_renovables"                                          
+[15] "areas_naturales_protegidas"                                            
+[16] "superficie_forestal_perdida"                                           
+[17] "uso_de_pesticidas"                                                     
+[18] "fuentes_de_energia_no_contaminantes"                                   
+[19] "indice_de_vulnerabilidad_a_efectos_del_cambio_climatico"               
+[20] "indice_de_gini"                                                        
+[21] "indice_global_de_brecha_de_genero"                                     
+[22] "mujeres_en_la_pea"                                                     
+[23] "dependientes_de_la_pea"                                                
+[24] "acceso_a_agua_potable"                                                 
+[25] "acceso_a_alcantarillado"                                               
+[26] "analfabetismo"                                                         
+[27] "escolaridad_promedio"                                                  
+[28] "calidad_educativa"                                                     
+[29] "esperanza_de_vida"                                                     
+[30] "mortalidad_infantil"                                                   
+[31] "cobertura_de_vacunacion"                                               
+[32] "medicos_y_medicas"                                                     
+[33] "gasto_en_salud_per_capita"                                             
+[34] "gasto_en_salud_por_cuenta_propia"                                      
+[35] "estabilidad_politica_y_ausencia_de_violencia"                          
+[36] "interferencia_militar_en_el_estado_de_derecho_o_en_el_proceso_politico"
+[37] "libertades_civiles"                                                    
+[38] "indice_de_percepcion_de_corrupcion"                                    
+[39] "disponibilidad_de_informacion_publica"                                 
+[40] "participacion_electoral"                                               
+[41] "equidad_en_los_congresos"                                              
+[42] "indice_de_efectividad_del_gobierno"                                    
+[43] "miembro_de_la_alianza_para_el_gobierno_abierto"                        
+[44] "indice_de_desarrollo_de_gobierno_electronico"                          
+[45] "facilidad_para_abrir_una_empresa"                                      
+[46] "tiempo_para_preparar_y_pagar_impuestos"                                
+[47] "ingresos_fiscales"                                                     
+[48] "finanzas_sanas"                                                        
+[49] "carga_impositiva"                                                      
+[50] "edad_efectiva_de_retiro"                                               
+[51] "flexibilidad_de_las_leyes_laborales"                                   
+[52] "productividad_media_del_trabajo"                                       
+[53] "valor_agregado_de_la_industria"                                        
+[54] "indice_de_transparencia_y_regulacion_de_la_propiedad_privada"          
+[55] "crecimiento_del_pib"                                                   
+[56] "crecimiento_promedio_del_pib"                                          
+[57] "inflacion"                                                             
+[58] "inflacion_promedio"                                                    
+[59] "desempleo"                                                             
+[60] "deuda_externa"                                                         
+[61] "calificacion_de_deuda"                                                 
+[62] "reservas"                                                              
+[63] "libertad_economica"                                                    
+[64] "indice_riesgos_de_seguridad_energetica"                                
+[65] "lineas_moviles"                                                        
+[66] "usuarios_de_internet"                                                  
+[67] "servidores_de_internet_seguros"                                        
+[68] "flujo_de_pasajeros_aereos"                                             
+[69] "indice_de_desempeno_logistico_transporte"                              
+[70] "trafico_portuario_de_contenedores"                                     
+[71] "penetracion_del_sistema_financiero_privado"                            
+[72] "capitalizacion_del_mercado_de_valores"                                 
+[73] "socios_comerciales_efectivos"                                          
+[74] "apertura_comercial"                                                    
+[75] "diversificacion_de_las_exportaciones"                                  
+[76] "diversificacion_de_las_importaciones"                                  
+[77] "libertad_comercial"                                                    
+[78] "inversion_extranjera_directa_neta"                                     
+[79] "inversion_extranjera_directa_neta_promedio"                            
+[80] "ingresos_por_turismo"                                                  
+[81] "gasto_en_investigacion_y_desarrollo"                                   
+[82] "coeficiente_de_invencion"                                              
+[83] "articulos_cientificos_y_tecnicos"                                      
+[84] "exportaciones_de_alta_tecnologia"                                      
+[85] "indice_de_complejidad_economica"                                       
+[86] "empresas_iso_9001"                                                     
+[87] "pib_en_servicios"                                                      
+[88] "x0"                                                                    
+[89] "inversion_fbcf"                                                        
+[90] "talento"                                                               </code></pre>
+</div>
+</div>
+<p>Si quisiéramos que la acción quedará de un solo, podemos usar un pipe diferente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&lt;&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tlaxt322)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "r_def"      "loc"        "mun"        "est"        "est_d_tri" 
+  [6] "est_d_men"  "ageb"       "t_loc_tri"  "t_loc_men"  "cd_a"      
+ [11] "ent"        "con"        "upm"        "d_sem"      "n_pro_viv" 
+ [16] "v_sel"      "n_hog"      "h_mud"      "n_ent"      "per"       
+ [21] "n_ren"      "c_res"      "par_c"      "sex"        "eda"       
+ [26] "nac_dia"    "nac_mes"    "nac_anio"   "l_nac_c"    "cs_p12"    
+ [31] "cs_p13_1"   "cs_p13_2"   "cs_p14_c"   "cs_p15"     "cs_p16"    
+ [36] "cs_p17"     "n_hij"      "e_con"      "cs_p20a_1"  "cs_p20a_c" 
+ [41] "cs_p20b_1"  "cs_p20b_c"  "cs_p20c_1"  "cs_ad_mot"  "cs_p21_des"
+ [46] "cs_ad_des"  "cs_nr_mot"  "cs_p23_des" "cs_nr_ori"  "ur"        
+ [51] "zona"       "salario"    "fac_tri"    "fac_men"    "clase1"    
+ [56] "clase2"     "clase3"     "pos_ocu"    "seg_soc"    "rama"      
+ [61] "c_ocu11c"   "ing7c"      "dur9c"      "emple7c"    "medica5c"  
+ [66] "buscar5c"   "rama_est1"  "rama_est2"  "dur_est"    "ambito1"   
+ [71] "ambito2"    "tue1"       "tue2"       "tue3"       "busqueda"  
+ [76] "d_ant_lab"  "d_cexp_est" "dur_des"    "sub_o"      "s_clasifi" 
+ [81] "remune2c"   "pre_asa"    "tip_con"    "dispo"      "nodispo"   
+ [86] "c_inac5c"   "pnea_est"   "niv_ins"    "eda5c"      "eda7c"     
+ [91] "eda12c"     "eda19c"     "hij5c"      "domestico"  "anios_esc" 
+ [96] "hrsocup"    "ingocup"    "ing_x_hrs"  "tpg_p8a"    "tcco"      
+[101] "cp_anoc"    "imssissste" "ma48me1sm"  "p14apoyos"  "scian"     
+[106] "t_tra"      "emp_ppal"   "tue_ppal"   "trans_ppal" "mh_fil2"   
+[111] "mh_col"     "sec_ins"    "tipo"       "mes_cal"   </code></pre>
+</div>
+</div>
+<p>Más de otros <em>pipes</em> <a href="https://r4ds.had.co.nz/pipes.html" class="uri">https://r4ds.had.co.nz/pipes.html</a></p>
+</section>
+</section>
+<section id="select-y-filter" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="select-y-filter"><span class="header-section-number">1.4</span> <code>select()</code> y <code>filter()</code></h2>
+<p>Este es un recordatorio de que en <code>{dplyr}</code>, se filtran CASOS, es decir, líneas o renglones, y se seleccionan VARIABLES.</p>
+<p>Por ejemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sex, eda) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9,205 × 2
+   sex          eda
+   &lt;dbl+lbl&gt;  &lt;dbl&gt;
+ 1 1 [Hombre]    34
+ 2 2 [Mujer]     57
+ 3 1 [Hombre]    71
+ 4 1 [Hombre]    67
+ 5 2 [Mujer]     60
+ 6 2 [Mujer]     35
+ 7 1 [Hombre]    39
+ 8 1 [Hombre]    38
+ 9 2 [Mujer]     33
+10 1 [Hombre]    14
+# … with 9,195 more rows</code></pre>
+</div>
+</div>
+<p>En la documentación de la base de datos de la ENOE se nos señala que debemos quedarnos con quienes tienen entrevista completa <code>r_def==0</code> y con quiénes son habitante habituales <code>(c_res!=2")</code></p>
+<p>Hagamos estos cambios:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&lt;&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(r_def<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>c_res<span class="sc">==</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tabulados-con-tabyl" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="tabulados-con-tabyl"><span class="header-section-number">1.5</span> Tabulados con <code>tabyl()</code></h2>
+<p>El comando tabyl del paquete <code>{janitor}</code> nos sirve para hacer tabulados. Para que sean más bonitas, necesitaremos cambiar algunas de nuestras variables a sus datos etiquetados</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">sex=</span>sjlabelled<span class="sc">::</span><span class="fu">as_label</span>(sex))  <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sex    n   percent
+ Hombre 5392 0.4767041
+  Mujer 5919 0.5232959</code></pre>
+</div>
+</div>
+<p>Para ver que esto es una distribución de frecuencias sería muy útil ver la proporción total, ello se realiza agregando un elemento más en nuestro código con una “tubería”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>() <span class="co">#primer enchulamiento</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sex     n   percent
+ Hombre  5392 0.4767041
+  Mujer  5919 0.5232959
+  Total 11311 1.0000000</code></pre>
+</div>
+</div>
+<p>Ahora, las proporciones son raras, y preferimos por los porcentajes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># cambia los valores de la variable a sus etiquetas</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(sex) <span class="sc">%&gt;%</span> <span class="co"># para hacer la tabla</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>() <span class="sc">%&gt;%</span> <span class="co"># añade totales</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>()  <span class="co"># nos da porcentaje en lugar de proporción</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sex     n percent
+ Hombre  5392   47.7%
+  Mujer  5919   52.3%
+  Total 11311  100.0%</code></pre>
+</div>
+</div>
+<p>Vamos a darle una “ojeada” a esta variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tlaxt322<span class="sc">$</span>niv_ins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> dbl+lbl [1:11311] 4, 2, 3, 3, 3, 4, 2, 3, 4, 2, 2, 2, 2, 3, 3, 2, 3, 2, 2,...
+ @ label       : chr "Clasificación de la población ocupada por nivel de instrucción"
+ @ format.stata: chr "%12.0g"
+ @ labels      : Named num [1:6] 0 1 2 3 4 5
+  ..- attr(*, "names")= chr [1:6] "No aplica" "Primaria incompleta" "Prrimaria completa" "Secundaria completa" ...</code></pre>
+</div>
+</div>
+<p>Hoy hacemos la tabla, con las etiquetas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co">#esto sólo si hay etiquetas declaradas, recuerda</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins    n      percent
+                 No aplica  714 0.0631243922
+       Primaria incompleta 2173 0.1921138715
+        Prrimaria completa 2025 0.1790292635
+       Secundaria completa 3201 0.2829988507
+ Medio superior y superior 3190 0.2820263460
+           No especificado    8 0.0007072761</code></pre>
+</div>
+</div>
+<p>Para que no nos salgan las categorías sin datos podemos poner una opción dentro del comando “tabyl()”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># esta opción elimina los valores con 0</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins     n      percent
+                 No aplica   714 0.0631243922
+       Primaria incompleta  2173 0.1921138715
+        Prrimaria completa  2025 0.1790292635
+       Secundaria completa  3201 0.2829988507
+ Medio superior y superior  3190 0.2820263460
+           No especificado     8 0.0007072761
+                     Total 11311 1.0000000000</code></pre>
+</div>
+</div>
+<section id="cálculo-de-frecuencias" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="cálculo-de-frecuencias"><span class="header-section-number">1.5.1</span> Cálculo de frecuencias</h3>
+<p>Las tablas de doble entrada tiene su nombre porque en las columnas entran los valores de una variable categórica, y en las filas de una segunda. Básicamente es como hacer un conteo de todas las combinaciones posibles entre los valores de una variable con la otra.</p>
+<p>Por ejemplo, si quisiéramos combinar las dos variables que ya estudiamos lo podemos hacer, con una tabla de doble entrada:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins Hombre Mujer
+                 No aplica    389   325
+       Primaria incompleta   1066  1107
+        Prrimaria completa    950  1075
+       Secundaria completa   1450  1751
+ Medio superior y superior   1533  1657
+           No especificado      4     4
+                     Total   5392  5919</code></pre>
+</div>
+</div>
+<p>Observamos que en cada celda confluyen los casos que comparten las mismas características:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span>   </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(niv_ins<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> sex<span class="sc">==</span><span class="dv">1</span>) <span class="co"># nos da la segunda celda de la izquierda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  `niv_ins == 1 &amp; sex == 1`     n
+  &lt;lgl&gt;                     &lt;int&gt;
+1 FALSE                     10245
+2 TRUE                       1066</code></pre>
+</div>
+</div>
+</section>
+<section id="totales-y-porcentajes" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="totales-y-porcentajes"><span class="header-section-number">1.5.2</span> Totales y porcentajes</h3>
+<p>De esta manera se colocan todos los datos. Si observa al poner la función “adorn_totals()” lo agregó como una nueva fila de totales, pero también podemos pedirle que agregue una columna de totales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sex</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">"col"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins Hombre Mujer Total
+                 No aplica    389   325   714
+       Primaria incompleta   1066  1107  2173
+        Prrimaria completa    950  1075  2025
+       Secundaria completa   1450  1751  3201
+ Medio superior y superior   1533  1657  3190
+           No especificado      4     4     8</code></pre>
+</div>
+</div>
+<p>O bien agregar los dos, introduciendo en el argumento <code>c("col", "row")</code> un vector de caracteres de las dos opciones requeridas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sexo</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins Hombre Mujer Total
+                 No aplica    389   325   714
+       Primaria incompleta   1066  1107  2173
+        Prrimaria completa    950  1075  2025
+       Secundaria completa   1450  1751  3201
+ Medio superior y superior   1533  1657  3190
+           No especificado      4     4     8
+                     Total   5392  5919 11311</code></pre>
+</div>
+</div>
+<p>Del mismo modo, podemos calcular los porcentajes. Pero los podemos calcular de tres formas. Uno es que lo calculemos para los totales calculados para las filas, para las columnas o para el gran total poblacional.</p>
+<p>Para columnas tenemos el siguiente código y los siguientes resultados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sexo</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">"col"</span>) <span class="sc">%&gt;%</span> <span class="co"># Divide los valores entre el total de la columna</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="co"># lo vuelve porcentaje</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins Hombre  Mujer  Total
+                 No aplica   7.2%   5.5%   6.3%
+       Primaria incompleta  19.8%  18.7%  19.2%
+        Prrimaria completa  17.6%  18.2%  17.9%
+       Secundaria completa  26.9%  29.6%  28.3%
+ Medio superior y superior  28.4%  28.0%  28.2%
+           No especificado   0.1%   0.1%   0.1%
+                     Total 100.0% 100.0% 100.0%</code></pre>
+</div>
+</div>
+<p>Cuando se hagan cuadros de distribuciones (que todas sus partes suman 100), los porcentajes pueden ser una gran ayuda para la interpretación, sobre todos cuando se comparar poblaciones de categorías de diferente tamaño. Por lo general, queremos que los cuadros nos den información de donde están los totales y su 100%, de esta manera el lector se puede guiar de porcentaje con respecto a qué está leyendo. En este caso, vemos que el 100% es común en la última fila.</p>
+<p>Veamos la diferencia de cómo podemos leer la misma celda, pero hoy, hemos calculado los porcentajes a nivel de fila:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">"row"</span>) <span class="sc">%&gt;%</span> <span class="co"># Divide los valores entre el total de la fila</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="co"># lo vuelve porcentaje</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins Hombre Mujer  Total
+                 No aplica  54.5% 45.5% 100.0%
+       Primaria incompleta  49.1% 50.9% 100.0%
+        Prrimaria completa  46.9% 53.1% 100.0%
+       Secundaria completa  45.3% 54.7% 100.0%
+ Medio superior y superior  48.1% 51.9% 100.0%
+           No especificado  50.0% 50.0% 100.0%
+                     Total  47.7% 52.3% 100.0%</code></pre>
+</div>
+</div>
+<p>Finalmente, podemos calcular los porcentajes con referencia a la población total en análisis. Es decir la celda en la esquina inferior derecha de nuestra tabla original.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sexo</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">adorn_percentages</span>(<span class="st">"all"</span>) <span class="sc">%&gt;%</span> <span class="co"># Divide los valores entre el total de la población</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="co"># lo vuelve porcentaje</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   niv_ins Hombre Mujer  Total
+                 No aplica   3.4%  2.9%   6.3%
+       Primaria incompleta   9.4%  9.8%  19.2%
+        Prrimaria completa   8.4%  9.5%  17.9%
+       Secundaria completa  12.8% 15.5%  28.3%
+ Medio superior y superior  13.6% 14.6%  28.2%
+           No especificado   0.0%  0.0%   0.1%
+                     Total  47.7% 52.3% 100.0%</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="grammar-of-tables-gt" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="grammar-of-tables-gt"><span class="header-section-number">1.6</span> <em>Grammar of tables: gt</em></h2>
+<p>Es un paquete que nos permite poner nuestras tablas en mejores formatos.</p>
+<p>Guardemos un ejemplo anterior en un objeto</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>mi_tabla<span class="ot">&lt;-</span>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sexo</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">adorn_percentages</span>(<span class="st">"all"</span>) <span class="sc">%&gt;%</span> <span class="co"># Divide los valores entre el total de la población</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="co"># lo vuelve porcentaje</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Veamos qué pasa con el comando “gt”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span><span class="fu">gt</span>(mi_tabla)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="clvnwlutyo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#clvnwlutyo) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#clvnwlutyo) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#clvnwlutyo) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#clvnwlutyo) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#clvnwlutyo) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#clvnwlutyo) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#clvnwlutyo) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#clvnwlutyo) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#clvnwlutyo) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#clvnwlutyo) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#clvnwlutyo) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#clvnwlutyo) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#clvnwlutyo) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#clvnwlutyo) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#clvnwlutyo) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#clvnwlutyo) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#clvnwlutyo) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#clvnwlutyo) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#clvnwlutyo) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#clvnwlutyo) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#clvnwlutyo) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#clvnwlutyo) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#clvnwlutyo) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#clvnwlutyo) .gt_left {
+  text-align: left;
+}
+
+:where(#clvnwlutyo) .gt_center {
+  text-align: center;
+}
+
+:where(#clvnwlutyo) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#clvnwlutyo) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#clvnwlutyo) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#clvnwlutyo) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#clvnwlutyo) .gt_super {
+  font-size: 65%;
+}
+
+:where(#clvnwlutyo) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#clvnwlutyo) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#clvnwlutyo) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#clvnwlutyo) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#clvnwlutyo) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#clvnwlutyo) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#clvnwlutyo) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="niv_ins">niv_ins</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Hombre">Hombre</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mujer">Mujer</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Total">Total</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="niv_ins" class="gt_row gt_left">No aplica</td>
+<td headers="Hombre" class="gt_row gt_right">3.4%</td>
+<td headers="Mujer" class="gt_row gt_right">2.9%</td>
+<td headers="Total" class="gt_row gt_right">6.3%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Primaria incompleta</td>
+<td headers="Hombre" class="gt_row gt_right">9.4%</td>
+<td headers="Mujer" class="gt_row gt_right">9.8%</td>
+<td headers="Total" class="gt_row gt_right">19.2%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Prrimaria completa</td>
+<td headers="Hombre" class="gt_row gt_right">8.4%</td>
+<td headers="Mujer" class="gt_row gt_right">9.5%</td>
+<td headers="Total" class="gt_row gt_right">17.9%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Secundaria completa</td>
+<td headers="Hombre" class="gt_row gt_right">12.8%</td>
+<td headers="Mujer" class="gt_row gt_right">15.5%</td>
+<td headers="Total" class="gt_row gt_right">28.3%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Medio superior y superior</td>
+<td headers="Hombre" class="gt_row gt_right">13.6%</td>
+<td headers="Mujer" class="gt_row gt_right">14.6%</td>
+<td headers="Total" class="gt_row gt_right">28.2%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">No especificado</td>
+<td headers="Hombre" class="gt_row gt_right">0.0%</td>
+<td headers="Mujer" class="gt_row gt_right">0.0%</td>
+<td headers="Total" class="gt_row gt_right">0.1%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Total</td>
+<td headers="Hombre" class="gt_row gt_right">47.7%</td>
+<td headers="Mujer" class="gt_row gt_right">52.3%</td>
+<td headers="Total" class="gt_row gt_right">100.0%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Con este formato será bastante sencillo agregar títulos y demás:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span>gt_tabla <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución del sexo de la población según nivel de escolaridad"</span>,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Tlaxcala, trimestre III de 2022"</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="qjaxzsrhkb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#qjaxzsrhkb) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#qjaxzsrhkb) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#qjaxzsrhkb) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#qjaxzsrhkb) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#qjaxzsrhkb) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#qjaxzsrhkb) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#qjaxzsrhkb) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#qjaxzsrhkb) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#qjaxzsrhkb) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#qjaxzsrhkb) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#qjaxzsrhkb) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#qjaxzsrhkb) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#qjaxzsrhkb) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#qjaxzsrhkb) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#qjaxzsrhkb) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#qjaxzsrhkb) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#qjaxzsrhkb) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#qjaxzsrhkb) .gt_left {
+  text-align: left;
+}
+
+:where(#qjaxzsrhkb) .gt_center {
+  text-align: center;
+}
+
+:where(#qjaxzsrhkb) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#qjaxzsrhkb) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#qjaxzsrhkb) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#qjaxzsrhkb) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#qjaxzsrhkb) .gt_super {
+  font-size: 65%;
+}
+
+:where(#qjaxzsrhkb) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#qjaxzsrhkb) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#qjaxzsrhkb) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#qjaxzsrhkb) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#qjaxzsrhkb) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#qjaxzsrhkb) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#qjaxzsrhkb) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <td colspan="4" class="gt_heading gt_title gt_font_normal" style="">Distribución del sexo de la población según nivel de escolaridad</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Tlaxcala, trimestre III de 2022</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="niv_ins">niv_ins</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Hombre">Hombre</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mujer">Mujer</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Total">Total</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="niv_ins" class="gt_row gt_left">No aplica</td>
+<td headers="Hombre" class="gt_row gt_right">3.4%</td>
+<td headers="Mujer" class="gt_row gt_right">2.9%</td>
+<td headers="Total" class="gt_row gt_right">6.3%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Primaria incompleta</td>
+<td headers="Hombre" class="gt_row gt_right">9.4%</td>
+<td headers="Mujer" class="gt_row gt_right">9.8%</td>
+<td headers="Total" class="gt_row gt_right">19.2%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Prrimaria completa</td>
+<td headers="Hombre" class="gt_row gt_right">8.4%</td>
+<td headers="Mujer" class="gt_row gt_right">9.5%</td>
+<td headers="Total" class="gt_row gt_right">17.9%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Secundaria completa</td>
+<td headers="Hombre" class="gt_row gt_right">12.8%</td>
+<td headers="Mujer" class="gt_row gt_right">15.5%</td>
+<td headers="Total" class="gt_row gt_right">28.3%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Medio superior y superior</td>
+<td headers="Hombre" class="gt_row gt_right">13.6%</td>
+<td headers="Mujer" class="gt_row gt_right">14.6%</td>
+<td headers="Total" class="gt_row gt_right">28.2%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">No especificado</td>
+<td headers="Hombre" class="gt_row gt_right">0.0%</td>
+<td headers="Mujer" class="gt_row gt_right">0.0%</td>
+<td headers="Total" class="gt_row gt_right">0.1%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Total</td>
+<td headers="Hombre" class="gt_row gt_right">47.7%</td>
+<td headers="Mujer" class="gt_row gt_right">52.3%</td>
+<td headers="Total" class="gt_row gt_right">100.0%</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Agreguemos la fuente a nuestra tabla:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span>gt_tabla <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="st">"Fuente: Cálculos propios con datos de INEGI"</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="tuopypmujb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#tuopypmujb) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#tuopypmujb) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#tuopypmujb) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#tuopypmujb) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#tuopypmujb) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#tuopypmujb) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#tuopypmujb) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#tuopypmujb) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#tuopypmujb) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#tuopypmujb) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#tuopypmujb) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#tuopypmujb) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#tuopypmujb) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#tuopypmujb) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tuopypmujb) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#tuopypmujb) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#tuopypmujb) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tuopypmujb) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#tuopypmujb) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tuopypmujb) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#tuopypmujb) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tuopypmujb) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tuopypmujb) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tuopypmujb) .gt_left {
+  text-align: left;
+}
+
+:where(#tuopypmujb) .gt_center {
+  text-align: center;
+}
+
+:where(#tuopypmujb) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#tuopypmujb) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#tuopypmujb) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#tuopypmujb) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#tuopypmujb) .gt_super {
+  font-size: 65%;
+}
+
+:where(#tuopypmujb) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#tuopypmujb) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#tuopypmujb) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#tuopypmujb) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#tuopypmujb) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#tuopypmujb) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#tuopypmujb) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <td colspan="4" class="gt_heading gt_title gt_font_normal" style="">Distribución del sexo de la población según nivel de escolaridad</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Tlaxcala, trimestre III de 2022</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="niv_ins">niv_ins</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Hombre">Hombre</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mujer">Mujer</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Total">Total</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="niv_ins" class="gt_row gt_left">No aplica</td>
+<td headers="Hombre" class="gt_row gt_right">3.4%</td>
+<td headers="Mujer" class="gt_row gt_right">2.9%</td>
+<td headers="Total" class="gt_row gt_right">6.3%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Primaria incompleta</td>
+<td headers="Hombre" class="gt_row gt_right">9.4%</td>
+<td headers="Mujer" class="gt_row gt_right">9.8%</td>
+<td headers="Total" class="gt_row gt_right">19.2%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Prrimaria completa</td>
+<td headers="Hombre" class="gt_row gt_right">8.4%</td>
+<td headers="Mujer" class="gt_row gt_right">9.5%</td>
+<td headers="Total" class="gt_row gt_right">17.9%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Secundaria completa</td>
+<td headers="Hombre" class="gt_row gt_right">12.8%</td>
+<td headers="Mujer" class="gt_row gt_right">15.5%</td>
+<td headers="Total" class="gt_row gt_right">28.3%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Medio superior y superior</td>
+<td headers="Hombre" class="gt_row gt_right">13.6%</td>
+<td headers="Mujer" class="gt_row gt_right">14.6%</td>
+<td headers="Total" class="gt_row gt_right">28.2%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">No especificado</td>
+<td headers="Hombre" class="gt_row gt_right">0.0%</td>
+<td headers="Mujer" class="gt_row gt_right">0.0%</td>
+<td headers="Total" class="gt_row gt_right">0.1%</td></tr>
+    <tr><td headers="niv_ins" class="gt_row gt_left">Total</td>
+<td headers="Hombre" class="gt_row gt_right">47.7%</td>
+<td headers="Mujer" class="gt_row gt_right">52.3%</td>
+<td headers="Total" class="gt_row gt_right">100.0%</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Fuente: Cálculos propios con datos de INEGI</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+<p>Checa más de este paquete por aquí <a href="https://gt.rstudio.com/articles/intro-creating-gt-tables.html" class="uri">https://gt.rstudio.com/articles/intro-creating-gt-tables.html</a></p>
+</section>
+<section id="descriptivos-para-variables-cuantitativas" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="descriptivos-para-variables-cuantitativas"><span class="header-section-number">1.7</span> Descriptivos para variables cuantitativas</h2>
+<p>Vamos a empezar a revisar los gráficos para variables cuantitativas.</p>
+<section id="medidas-numéricas-básicas" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="medidas-numéricas-básicas"><span class="header-section-number">1.7.1</span> Medidas numéricas básicas</h3>
+<p>5 números</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tlaxt322<span class="sc">$</span>ing_x_hrs) <span class="do">## ingreso por horas </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    0.00    0.00   12.10   18.75 1356.59 </code></pre>
+</div>
+</div>
+<p>Con pipes se pueden crear “indicadores” de nuestras variables es un tibble</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nombre_indicador=</span><span class="fu">mean</span>(ing_x_hrs, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  nombre_indicador
+             &lt;dbl&gt;
+1             12.1</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./instala.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalación de R y Rstudio</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

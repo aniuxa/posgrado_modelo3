@@ -1,0 +1,213 @@
+"0","remotes::install_github(c(""ropensci/tabulizerjars"", ""ropensci/tabulizer""))"
+"2","Downloading GitHub repo ropensci/tabulizerjars@HEAD
+"
+"2","Installing 1 packages: rJava
+"
+"2","trying URL 'https://cran.rstudio.com/bin/macosx/big-sur-arm64/contrib/4.2/rJava_1.0-6.tgz'
+"
+"2","Content type 'application/x-gzip'"
+"2"," length 1155352 bytes (1.1 MB)
+"
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","="
+"2","
+"
+"2","downloaded 1.1 MB
+
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T//RtmpBpieVM/downloaded_packages"
+"1",""
+"1","
+"
+"2","Running `R CMD build`...
+"
+"1","* checking for file ‘/private/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T/RtmpBpieVM/remotes68e2efdd25f/ropensci-tabulizerjars-d1924e0/DESCRIPTION’ ... OK"
+"1","
+"
+"1","* preparing ‘tabulizerjars’:"
+"1","
+"
+"1","* checking DESCRIPTION meta-information ... OK"
+"1","
+"
+"1","* checking for LF line-endings in source and make files and shell scripts"
+"1","
+"
+"1","* checking for empty or unneeded directories"
+"1","
+"
+"1","* building ‘tabulizerjars_1.0.1.tar.gz’"
+"1","
+"
+"2","* installing *source* package ‘tabulizerjars’ ...
+"
+"2","** using staged installation
+"
+"2","** R
+"
+"2","** inst
+"
+"2","** byte-compile and prepare package for lazy loading
+"
+"2","** help
+"
+"2","*** installing help indices
+"
+"2","** building package indices
+"
+"2","** testing if installed package can be loaded from temporary location
+"
+"1","Error: package or namespace load failed for ‘tabulizerjars’:
+ .onLoad failed in loadNamespace() for 'tabulizerjars', details:
+  call: NULL
+  error: .onLoad failed in loadNamespace() for 'rJava', details:
+  call: dyn.load(jli, FALSE)
+  error: unable to load shared object '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib':
+  dlopen(/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib, 0x000A): tried: '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64')), '/System/Volumes/Preboot/Cryptexes/OS/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib' (no such file), '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64'))
+Error: loading failed
+Execution halted
+"
+"2","ERROR: loading failed
+* removing ‘/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/tabulizerjars’
+"
+"2","Warning: installation of package ‘/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T//RtmpBpieVM/file68e26bff62fd/tabulizerjars_1.0.1.tar.gz’ had non-zero exit status"
+"2","Downloading GitHub repo ropensci/tabulizer@HEAD
+"
+"2","Downloading GitHub repo ropensci/tabulizerjars@HEAD
+"
+"2","Running `R CMD build`...
+"
+"1","* checking for file ‘/private/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T/RtmpBpieVM/remotes68e263628af8/ropensci-tabulizerjars-d1924e0/DESCRIPTION’ ... OK"
+"1","
+"
+"1","* preparing ‘tabulizerjars’:"
+"1","
+"
+"1","* checking DESCRIPTION meta-information ... OK"
+"1","
+"
+"1","* checking for LF line-endings in source and make files and shell scripts"
+"1","
+"
+"1","* checking for empty or unneeded directories"
+"1","
+"
+"1","* building ‘tabulizerjars_1.0.1.tar.gz’"
+"1","
+"
+"2","* installing *source* package ‘tabulizerjars’ ...
+"
+"2","** using staged installation
+"
+"2","** R
+"
+"2","** inst
+"
+"2","** byte-compile and prepare package for lazy loading
+"
+"2","** help
+"
+"2","*** installing help indices
+"
+"2","** building package indices
+"
+"2","** testing if installed package can be loaded from temporary location
+"
+"1","Error: package or namespace load failed for ‘tabulizerjars’:
+ .onLoad failed in loadNamespace() for 'tabulizerjars', details:
+  call: NULL
+  error: .onLoad failed in loadNamespace() for 'rJava', details:
+  call: dyn.load(jli, FALSE)
+  error: unable to load shared object '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib':
+  dlopen(/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib, 0x000A): tried: '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64')), '/System/Volumes/Preboot/Cryptexes/OS/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib' (no such file), '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/jli/libjli.dylib' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64'))
+Error: loading failed
+Execution halted
+"
+"2","ERROR: loading failed
+* removing ‘/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/tabulizerjars’
+"
+"2","Warning: installation of package ‘/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T//RtmpBpieVM/file68e25a91d2c1/tabulizerjars_1.0.1.tar.gz’ had non-zero exit status"
+"2","Downloading GitHub repo ropensci/tabulizerjars@HEAD
+"
+"2","Skipping tabulizerjars, it is already being installed
+"
+"2","Running `R CMD build`...
+"
+"1","* checking for file ‘/private/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T/RtmpBpieVM/remotes68e26f646ddf/ropensci-tabulizer-08e3d76/DESCRIPTION’ ... OK"
+"1","
+"
+"1","* preparing ‘tabulizer’:"
+"1","
+"
+"1","* checking DESCRIPTION meta-information ... OK"
+"1","
+"
+"1","* checking for LF line-endings in source and make files and shell scripts"
+"1","
+"
+"1","* checking for empty or unneeded directories"
+"1","
+"
+"1","Removed empty directory ‘tabulizer/docs’"
+"1","
+"
+"1","* building ‘tabulizer_0.2.3.tar.gz’"
+"1","
+"
+"2","ERROR: dependency ‘tabulizerjars’ is not available for package ‘tabulizer’
+"
+"2","* removing ‘/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/tabulizer’
+"
+"2","Warning: installation of package ‘/var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T//RtmpBpieVM/file68e275f8a57d/tabulizer_0.2.3.tar.gz’ had non-zero exit status"

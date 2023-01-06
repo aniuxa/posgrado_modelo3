@@ -1,0 +1,4 @@
+"0",""
+"0","if(!require(""pacman"")) install.packages(""pacman"")"
+"0","pacman::p_load(tidyverse, readxl, writexl, haven, sjlabelled, foreign, janitor, esquisse, RColorBrewer, wesanderson)"
+"0",""
