@@ -1,6 +1,5 @@
 # Introducción: `{dplyr}` y `{ggplot2}`
 
-
 ## Paquetes
 
 ```{r}
@@ -17,10 +16,10 @@ pacman::p_load(tidyverse,
                gt)
 ```
 
-
 ## Cargando los datos
 
 Desde STATA
+
 ```{r}
 tlaxt322<- haven::read_dta("./datos/tlaxt322.dta")
 
@@ -47,7 +46,6 @@ tlaxt322|> #pipe nativo, no necesita instalación
   head()
 ```
 
-
 ```{r}
 tlaxt322 %>%  #pipe de dplyr, necesita instalación de dplyr en tidyverse
   head()
@@ -55,9 +53,9 @@ tlaxt322 %>%  #pipe de dplyr, necesita instalación de dplyr en tidyverse
 
 ### Limpieza de nombres con `{janitor}`
 
-Este paso también nos permitirá enseñar otro *pipe* que está en el paquete  `{magrittr}`.
+Este paso también nos permitirá enseñar otro *pipe* que está en el paquete `{magrittr}`.
 
-Los nombres de una base de datos son los nombres de las columnas. 
+Los nombres de una base de datos son los nombres de las columnas.
 
 ```{r}
 names(tlaxt322)
@@ -86,7 +84,7 @@ Más de otros *pipes* <https://r4ds.had.co.nz/pipes.html>
 
 ## `select()` y `filter()`
 
-Este es un recordatorio de que en `{dplyr}`, se filtran CASOS, es decir, líneas o renglones, y se seleccionan VARIABLES. 
+Este es un recordatorio de que en `{dplyr}`, se filtran CASOS, es decir, líneas o renglones, y se seleccionan VARIABLES.
 
 Por ejemplo:
 
@@ -105,8 +103,6 @@ tlaxt322%<>%
   filter(r_def==0) %>% 
   filter(!c_res==2)
 ```
-
-
 
 ## Tabulados con `tabyl()`
 
@@ -139,10 +135,10 @@ tlaxt322%>%
 ```
 
 Vamos a darle una "ojeada" a esta variable
+
 ```{r}
 glimpse(tlaxt322$niv_ins)
 ```
-
 
 Hoy hacemos la tabla, con las etiquetas:
 
@@ -162,10 +158,9 @@ tlaxt322%>%
   adorn_totals()  
 ```
 
-
 ### Cálculo de frecuencias
 
-Las tablas de doble entrada tiene su nombre porque en las columnas entran los valores de una variable categórica, y en las filas de una segunda. Básicamente es como hacer un conteo de todas las combinaciones posibles entre los valores de una variable con la otra. 
+Las tablas de doble entrada tiene su nombre porque en las columnas entran los valores de una variable categórica, y en las filas de una segunda. Básicamente es como hacer un conteo de todas las combinaciones posibles entre los valores de una variable con la otra.
 
 Por ejemplo, si quisiéramos combinar las dos variables que ya estudiamos lo podemos hacer, con una tabla de doble entrada:
 
@@ -187,8 +182,7 @@ tlaxt322%>%
 
 ### Totales y porcentajes
 
-De esta manera se colocan todos los datos. Si observa al poner la función "adorn_totals()" lo agregó como una nueva fila de totales, pero también podemos pedirle que agregue una columna de totales. 
-
+De esta manera se colocan todos los datos. Si observa al poner la función "adorn_totals()" lo agregó como una nueva fila de totales, pero también podemos pedirle que agregue una columna de totales.
 
 ```{r}
 tlaxt322%>% 
@@ -208,9 +202,10 @@ tlaxt322%>%
   adorn_totals(c("col", "row")) 
 ```
 
-Del mismo modo, podemos calcular los porcentajes. Pero los podemos calcular de tres formas. Uno es que lo calculemos para los totales calculados para las filas, para las columnas o para el gran total poblacional. 
+Del mismo modo, podemos calcular los porcentajes. Pero los podemos calcular de tres formas. Uno es que lo calculemos para los totales calculados para las filas, para las columnas o para el gran total poblacional.
 
 Para columnas tenemos el siguiente código y los siguientes resultados:
+
 ```{r}
 tlaxt322%>% 
   mutate(niv_ins=as_label(niv_ins)) %>% # para que las lea como factor
@@ -221,9 +216,10 @@ tlaxt322%>%
   adorn_pct_formatting() # lo vuelve porcentaje
 ```
 
-Cuando se hagan cuadros de distribuciones (que todas sus partes suman 100), los porcentajes pueden ser una gran ayuda para la interpretación, sobre todos cuando se comparar poblaciones de categorías de diferente tamaño. Por lo general, queremos que los cuadros nos den información de donde están los totales y su 100%, de esta manera el lector se puede guiar de porcentaje con respecto a qué está leyendo. En este caso, vemos que el 100% es común en la última fila. 
+Cuando se hagan cuadros de distribuciones (que todas sus partes suman 100), los porcentajes pueden ser una gran ayuda para la interpretación, sobre todos cuando se comparar poblaciones de categorías de diferente tamaño. Por lo general, queremos que los cuadros nos den información de donde están los totales y su 100%, de esta manera el lector se puede guiar de porcentaje con respecto a qué está leyendo. En este caso, vemos que el 100% es común en la última fila.
 
 Veamos la diferencia de cómo podemos leer la misma celda, pero hoy, hemos calculado los porcentajes a nivel de fila:
+
 ```{r}
 tlaxt322%>% 
   mutate(niv_ins=as_label(niv_ins)) %>% # para que las lea como factor
@@ -233,7 +229,6 @@ tlaxt322%>%
   adorn_percentages("row") %>% # Divide los valores entre el total de la fila
   adorn_pct_formatting() # lo vuelve porcentaje
 ```
-
 
 Finalmente, podemos calcular los porcentajes con referencia a la población total en análisis. Es decir la celda en la esquina inferior derecha de nuestra tabla original.
 
@@ -248,9 +243,11 @@ tlaxt322%>%
 ```
 
 ## *Grammar of tables: gt*
-Es un paquete que nos permite poner nuestras tablas en mejores formatos. 
+
+Es un paquete que nos permite poner nuestras tablas en mejores formatos.
 
 Guardemos un ejemplo anterior en un objeto
+
 ```{r}
 mi_tabla<-tlaxt322%>% 
   mutate(niv_ins=as_label(niv_ins)) %>% # para que las lea como factor
@@ -291,13 +288,14 @@ gt_tabla<-gt_tabla %>%
 gt_tabla
 ```
 
-
 Checa más de este paquete por aquí <https://gt.rstudio.com/articles/intro-creating-gt-tables.html>
 
 ## Descriptivos para variables cuantitativas
+
 Vamos a empezar a revisar los gráficos para variables cuantitativas.
 
 ### Medidas numéricas básicas
+
 5 números
 
 ```{r}
@@ -305,8 +303,8 @@ summary(tlaxt322$ing_x_hrs) ## ingreso por horas
 ```
 
 Con pipes se pueden crear "indicadores" de nuestras variables es un tibble
+
 ```{r}
 tlaxt322%>% 
   summarise(nombre_indicador=mean(ing_x_hrs, na.rm=T))
 ```
-
