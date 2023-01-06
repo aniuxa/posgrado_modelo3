@@ -18,7 +18,7 @@
     "href": "index.html#temas",
     "title": "Inferencia e introducción a los modelos estadísticos con R",
     "section": "Temas",
-    "text": "Temas\n1. Revisión de elementos estadísticos básicos desde “tidyverse” \n\nTablas de múltiples entradas\nRepaso de ggplot2\n\n** 2. Pruebas de hipótesis e intervalos de confianza **\n\nDe una sola media\nDe dos medias\nMedias apareadas\nProporciones\nDiferencia de proporciones\nChi-cuadrado de independencia\nPrueba ANOVA de un solo factor\nPruebas no parámetricas\n\n3. Factores de expansión y diseño muestral complejo\n\nDe “survey” a “srvyr”\nTabulados\nIntervalos de confianza para medias y cuantiles\n\n4. Introducción al modelo de regresión lineal\n\nSimple\nMúltiple\nEvaluación de supuestos\n\n** 5. Introducción a los modelos lineales generalizados **\n\nIntroducción a la regresión logística\nEvaluación de supuestos\nEfectos marginales\nInteracciones y efectos de más de primer orden"
+    "text": "Temas\n1. Revisión de elementos estadísticos básicos desde “tidyverse” \n\nTablas de múltiples entradas\nRepaso de ggplot2\n\n2. Pruebas de hipótesis e intervalos de confianza \n\nDe una sola media\nDe dos medias\nMedias apareadas\nProporciones\nDiferencia de proporciones\nChi-cuadrado de independencia\nPrueba ANOVA de un solo factor\nPruebas no parámetricas\n\n3. Factores de expansión y diseño muestral complejo\n\nDe “survey” a “srvyr”\nTabulados\nIntervalos de confianza para medias y cuantiles\n\n4. Introducción al modelo de regresión lineal\n\nSimple\nMúltiple\nEvaluación de supuestos\n\n5. Introducción a los modelos lineales generalizados \n\nIntroducción a la regresión logística\nEvaluación de supuestos\nEfectos marginales\nInteracciones y efectos de más de primer orden"
   },
   {
     "objectID": "index.html#metodología",
@@ -26,6 +26,20 @@
     "title": "Inferencia e introducción a los modelos estadísticos con R",
     "section": "Metodología",
     "text": "Metodología\nLa metodología del curso consistirá en lo siguiente:\n1. La exposición de la facilitadora. Durante la primera parte de la sesión, se expondrán los comandos necesarios para llevar a cabo cada tema. Se dará una introducción sobre la temática y se buscará dar ejemplos concretos para facilitar el aprendizaje. Se espera que el personal exponga sus dudas o comentarios a lo largo de la explicación.\n2. Realización de ejercicios prácticos. Al final de cada sesión, corresponderá a las personas asistentes del curso realizar individualmente o en parejas un ejercicio relacionado con lo visto en la primera parte de la clase.\n3. Consulta autónoma de material. Tanto la exposición como los ejercicios serán acompañado de material de consulta realizado ad hoc para el curso y el contenido, de tal manera que el estudiantado pueda volver a los códigos y las explicaciones posteriormente."
+  },
+  {
+    "objectID": "index.html#proyecto-en-posit.cloud",
+    "href": "index.html#proyecto-en-posit.cloud",
+    "title": "Inferencia e introducción a los modelos estadísticos con R",
+    "section": "Proyecto en posit.cloud",
+    "text": "Proyecto en posit.cloud\nhttps://posit.cloud/content/5191591\nCon este proyecto se trabajará a lo largo del curso"
+  },
+  {
+    "objectID": "index.html#versiones-anteriores",
+    "href": "index.html#versiones-anteriores",
+    "title": "Inferencia e introducción a los modelos estadísticos con R",
+    "section": "Versiones anteriores",
+    "text": "Versiones anteriores\nEsta es la tercera vez que se imparte el curso. Las versiones anteriores están\n\nhttps://aniuxa.github.io/posgrado_modelo/\nhttps://aniuxa.github.io/posgrado_modelo2/"
   },
   {
     "objectID": "index.html#facilitadora",

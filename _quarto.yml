@@ -6,8 +6,11 @@ book:
   title: "Inferencia e introducción a los modelos estadísticos con R"
   subtitle: "Curso intersemestral de Invierno - Posgrado de Ciencias Políticas y Sociales"
   author: "Ana Escoto"
-
   date: "01/09/2023"
+  site-url: https://aniuxa.github.io/posgrado_modelo3/
+  repo-url: https://github.com/aniuxa/posgrado_modelo3/
+  repo-branch: main
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
     - instala.qmd
@@ -16,7 +19,7 @@ book:
 format:
   html:
     theme:
-      light: flatly
+      light: lumen
       dark: darkly
   pdf: 
     documentclass: report

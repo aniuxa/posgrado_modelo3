@@ -13,7 +13,7 @@ a.	Tablas de múltiples entradas
 b.	Repaso de ggplot2
 
 
-** 2.	Pruebas de hipótesis e intervalos de confianza **
+**2.	Pruebas de hipótesis e intervalos de confianza **
 
 a.	De una sola media
 
@@ -47,7 +47,7 @@ b.	Múltiple
 
 c.	Evaluación de supuestos
 
-** 5.	Introducción a los modelos lineales generalizados **
+**5.	Introducción a los modelos lineales generalizados **
 
 a.	Introducción a la regresión logística
 
@@ -67,6 +67,19 @@ La metodología del curso consistirá en lo siguiente:
 *2. Realización de ejercicios prácticos*. Al final de cada sesión, corresponderá a las personas asistentes del curso realizar individualmente o en parejas un ejercicio relacionado con lo visto en la primera parte de la clase.
 
 *3. Consulta autónoma de material*. Tanto la exposición como los ejercicios serán acompañado de material de consulta realizado ad hoc para el curso y el contenido, de tal manera que el estudiantado pueda volver a los códigos y las explicaciones posteriormente.
+
+## Proyecto en posit.cloud
+
+<https://posit.cloud/content/5191591>
+
+Con este proyecto se trabajará a lo largo del curso
+
+## Versiones anteriores
+
+Esta es la tercera vez que se imparte el curso. Las versiones anteriores están
+
+- <https://aniuxa.github.io/posgrado_modelo/>
+- <https://aniuxa.github.io/posgrado_modelo2/>
 
 ## Facilitadora
 
