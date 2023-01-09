@@ -1,0 +1,21 @@
+# Material anexo {.unnumbered}
+
+## Lista general de YouTube
+
+<https://www.youtube.com/playlist?list=PLDnSa5YhrAVlczarJEzgR_bxFGbg9MGEU>
+
+## Scripts
+
+Los scripts están en esta carpeta: <https://github.com/aniuxa/posgrado_modelo3/tree/main/scripts>
+
+## Sesión 1
+
+### Video
+
+{{< video https://youtu.be/D4KgiEX7rB8 >}}
+
+### Cheat Sheets
+
+-   RStudio IDE: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf>
+
+-   dplyr: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf>

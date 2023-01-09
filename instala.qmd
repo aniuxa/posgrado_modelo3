@@ -2,16 +2,19 @@
 
 ## Introducción a R
 
-<https://youtu.be/YkN5urybh2A> Video en YouTube
+{{< video https://youtu.be/YkN5urybh2A >}}
+
 
 ## Instalación en OS
 
-<https://youtu.be/icWV8jzYOtA> Viedo en YouTube
+{{< video https://youtu.be/icWV8jzYOtA >}}
+
 
 ## Instalación en PC
 
-<https://youtu.be/TNSQikMfgJI> Video en YouTube
+{{< video https://youtu.be/TNSQikMfgJI >}}
+
 
 ## Ojo
 
-Pronto RStudio se volverá **"posit"**
+Desde octubre de 2022, RStudio se volvió **"Posit"**

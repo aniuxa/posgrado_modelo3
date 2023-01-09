@@ -265,41 +265,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>               broom,</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>               DescTools,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>               wesanderson)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>also installing the dependency 'reshape'</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T//RtmpiSDTYn/downloaded_packages</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-GGally installed</code></pre>
-</div>
 </div>
 </section>
 <section id="cargando-los-datos" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="cargando-los-datos"><span class="header-section-number">2.2</span> Cargando los datos</h2>
 <p>Desde STATA</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"./datos/tlaxt322.dta"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"./datos/tlaxt322.dta"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Desde Excel:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ICI_2021 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"./datos/ICI_2021.xlsx"</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">sheet =</span> <span class="st">"para_importar"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ICI_2021 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"./datos/ICI_2021.xlsx"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">sheet =</span> <span class="st">"para_importar"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 • `` -&gt; `...2`</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(r_def<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>c_res<span class="sc">==</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(r_def<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>c_res<span class="sc">==</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="grammar-of-tables-gt" class="level2" data-number="2.3">
@@ -307,26 +295,26 @@ GGally installed</code></pre>
 <p>Es un paquete que nos permite poner nuestras tablas en mejores formatos.</p>
 <p>Guardemos un ejemplo anterior en un objeto</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mi_tabla<span class="ot">&lt;-</span>tlaxt322<span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sexo</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">adorn_percentages</span>(<span class="st">"all"</span>) <span class="sc">%&gt;%</span> <span class="co"># Divide los valores entre el total de la población</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="co"># lo vuelve porcentaje</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mi_tabla<span class="ot">&lt;-</span>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">niv_ins=</span><span class="fu">as_label</span>(niv_ins)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">as_label</span>(sex)) <span class="sc">%&gt;%</span> <span class="co"># para que las lea como factor</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(niv_ins, sex, <span class="at">show_missing_levels=</span>F ) <span class="sc">%&gt;%</span> <span class="co"># incluimos aquí sexo</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"col"</span>, <span class="st">"row"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">adorn_percentages</span>(<span class="st">"all"</span>) <span class="sc">%&gt;%</span> <span class="co"># Divide los valores entre el total de la población</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="co"># lo vuelve porcentaje</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Veamos qué pasa con el comando “gt”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span><span class="fu">gt</span>(mi_tabla)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span><span class="fu">gt</span>(mi_tabla)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="bahbefthtz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vmtnrmffoy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#bahbefthtz) .gt_table {
+:where(#vmtnrmffoy) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -351,7 +339,7 @@ GGally installed</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_heading {
+:where(#vmtnrmffoy) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -363,12 +351,12 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_caption {
+:where(#vmtnrmffoy) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#bahbefthtz) .gt_title {
+:where(#vmtnrmffoy) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -380,7 +368,7 @@ GGally installed</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#bahbefthtz) .gt_subtitle {
+:where(#vmtnrmffoy) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -392,13 +380,13 @@ GGally installed</code></pre>
   border-top-width: 0;
 }
 
-:where(#bahbefthtz) .gt_bottom_border {
+:where(#vmtnrmffoy) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_col_headings {
+:where(#vmtnrmffoy) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -413,7 +401,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_col_heading {
+:where(#vmtnrmffoy) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -433,7 +421,7 @@ GGally installed</code></pre>
   overflow-x: hidden;
 }
 
-:where(#bahbefthtz) .gt_column_spanner_outer {
+:where(#vmtnrmffoy) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -445,15 +433,15 @@ GGally installed</code></pre>
   padding-right: 4px;
 }
 
-:where(#bahbefthtz) .gt_column_spanner_outer:first-child {
+:where(#vmtnrmffoy) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#bahbefthtz) .gt_column_spanner_outer:last-child {
+:where(#vmtnrmffoy) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#bahbefthtz) .gt_column_spanner {
+:where(#vmtnrmffoy) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -465,7 +453,7 @@ GGally installed</code></pre>
   width: 100%;
 }
 
-:where(#bahbefthtz) .gt_group_heading {
+:where(#vmtnrmffoy) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -491,7 +479,7 @@ GGally installed</code></pre>
   text-align: left;
 }
 
-:where(#bahbefthtz) .gt_empty_group_heading {
+:where(#vmtnrmffoy) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -506,15 +494,15 @@ GGally installed</code></pre>
   vertical-align: middle;
 }
 
-:where(#bahbefthtz) .gt_from_md > :first-child {
+:where(#vmtnrmffoy) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#bahbefthtz) .gt_from_md > :last-child {
+:where(#vmtnrmffoy) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#bahbefthtz) .gt_row {
+:where(#vmtnrmffoy) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -533,7 +521,7 @@ GGally installed</code></pre>
   overflow-x: hidden;
 }
 
-:where(#bahbefthtz) .gt_stub {
+:where(#vmtnrmffoy) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -546,7 +534,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#bahbefthtz) .gt_stub_row_group {
+:where(#vmtnrmffoy) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -560,11 +548,11 @@ GGally installed</code></pre>
   vertical-align: top;
 }
 
-:where(#bahbefthtz) .gt_row_group_first td {
+:where(#vmtnrmffoy) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#bahbefthtz) .gt_summary_row {
+:where(#vmtnrmffoy) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -574,16 +562,16 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#bahbefthtz) .gt_first_summary_row {
+:where(#vmtnrmffoy) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_first_summary_row.thick {
+:where(#vmtnrmffoy) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#bahbefthtz) .gt_last_summary_row {
+:where(#vmtnrmffoy) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -593,7 +581,7 @@ GGally installed</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_grand_summary_row {
+:where(#vmtnrmffoy) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -603,7 +591,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#bahbefthtz) .gt_first_grand_summary_row {
+:where(#vmtnrmffoy) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -613,11 +601,11 @@ GGally installed</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_striped {
+:where(#vmtnrmffoy) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#bahbefthtz) .gt_table_body {
+:where(#vmtnrmffoy) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -626,7 +614,7 @@ GGally installed</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_footnotes {
+:where(#vmtnrmffoy) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -640,7 +628,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_footnote {
+:where(#vmtnrmffoy) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -649,7 +637,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#bahbefthtz) .gt_sourcenotes {
+:where(#vmtnrmffoy) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -663,7 +651,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#bahbefthtz) .gt_sourcenote {
+:where(#vmtnrmffoy) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -671,64 +659,64 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#bahbefthtz) .gt_left {
+:where(#vmtnrmffoy) .gt_left {
   text-align: left;
 }
 
-:where(#bahbefthtz) .gt_center {
+:where(#vmtnrmffoy) .gt_center {
   text-align: center;
 }
 
-:where(#bahbefthtz) .gt_right {
+:where(#vmtnrmffoy) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#bahbefthtz) .gt_font_normal {
+:where(#vmtnrmffoy) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#bahbefthtz) .gt_font_bold {
+:where(#vmtnrmffoy) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#bahbefthtz) .gt_font_italic {
+:where(#vmtnrmffoy) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#bahbefthtz) .gt_super {
+:where(#vmtnrmffoy) .gt_super {
   font-size: 65%;
 }
 
-:where(#bahbefthtz) .gt_footnote_marks {
+:where(#vmtnrmffoy) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#bahbefthtz) .gt_asterisk {
+:where(#vmtnrmffoy) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#bahbefthtz) .gt_indent_1 {
+:where(#vmtnrmffoy) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#bahbefthtz) .gt_indent_2 {
+:where(#vmtnrmffoy) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#bahbefthtz) .gt_indent_3 {
+:where(#vmtnrmffoy) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#bahbefthtz) .gt_indent_4 {
+:where(#vmtnrmffoy) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#bahbefthtz) .gt_indent_5 {
+:where(#vmtnrmffoy) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -780,21 +768,21 @@ GGally installed</code></pre>
 </div>
 <p>Con este formato será bastante sencillo agregar títulos y demás:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span>gt_tabla <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución del sexo de la población según nivel de escolaridad"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Tlaxcala, trimestre III de 2022"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span>gt_tabla <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución del sexo de la población según nivel de escolaridad"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Tlaxcala, trimestre III de 2022"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="tbglpwtlsa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rcjxnzhhwy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#tbglpwtlsa) .gt_table {
+:where(#rcjxnzhhwy) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -819,7 +807,7 @@ GGally installed</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_heading {
+:where(#rcjxnzhhwy) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -831,12 +819,12 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_caption {
+:where(#rcjxnzhhwy) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#tbglpwtlsa) .gt_title {
+:where(#rcjxnzhhwy) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -848,7 +836,7 @@ GGally installed</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#tbglpwtlsa) .gt_subtitle {
+:where(#rcjxnzhhwy) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -860,13 +848,13 @@ GGally installed</code></pre>
   border-top-width: 0;
 }
 
-:where(#tbglpwtlsa) .gt_bottom_border {
+:where(#rcjxnzhhwy) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_col_headings {
+:where(#rcjxnzhhwy) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -881,7 +869,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_col_heading {
+:where(#rcjxnzhhwy) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,7 +889,7 @@ GGally installed</code></pre>
   overflow-x: hidden;
 }
 
-:where(#tbglpwtlsa) .gt_column_spanner_outer {
+:where(#rcjxnzhhwy) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -913,15 +901,15 @@ GGally installed</code></pre>
   padding-right: 4px;
 }
 
-:where(#tbglpwtlsa) .gt_column_spanner_outer:first-child {
+:where(#rcjxnzhhwy) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#tbglpwtlsa) .gt_column_spanner_outer:last-child {
+:where(#rcjxnzhhwy) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#tbglpwtlsa) .gt_column_spanner {
+:where(#rcjxnzhhwy) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -933,7 +921,7 @@ GGally installed</code></pre>
   width: 100%;
 }
 
-:where(#tbglpwtlsa) .gt_group_heading {
+:where(#rcjxnzhhwy) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -959,7 +947,7 @@ GGally installed</code></pre>
   text-align: left;
 }
 
-:where(#tbglpwtlsa) .gt_empty_group_heading {
+:where(#rcjxnzhhwy) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -974,15 +962,15 @@ GGally installed</code></pre>
   vertical-align: middle;
 }
 
-:where(#tbglpwtlsa) .gt_from_md > :first-child {
+:where(#rcjxnzhhwy) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#tbglpwtlsa) .gt_from_md > :last-child {
+:where(#rcjxnzhhwy) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#tbglpwtlsa) .gt_row {
+:where(#rcjxnzhhwy) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1001,7 +989,7 @@ GGally installed</code></pre>
   overflow-x: hidden;
 }
 
-:where(#tbglpwtlsa) .gt_stub {
+:where(#rcjxnzhhwy) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1014,7 +1002,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#tbglpwtlsa) .gt_stub_row_group {
+:where(#rcjxnzhhwy) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1028,11 +1016,11 @@ GGally installed</code></pre>
   vertical-align: top;
 }
 
-:where(#tbglpwtlsa) .gt_row_group_first td {
+:where(#rcjxnzhhwy) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#tbglpwtlsa) .gt_summary_row {
+:where(#rcjxnzhhwy) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1042,16 +1030,16 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#tbglpwtlsa) .gt_first_summary_row {
+:where(#rcjxnzhhwy) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_first_summary_row.thick {
+:where(#rcjxnzhhwy) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#tbglpwtlsa) .gt_last_summary_row {
+:where(#rcjxnzhhwy) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1061,7 +1049,7 @@ GGally installed</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_grand_summary_row {
+:where(#rcjxnzhhwy) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1071,7 +1059,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#tbglpwtlsa) .gt_first_grand_summary_row {
+:where(#rcjxnzhhwy) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1081,11 +1069,11 @@ GGally installed</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_striped {
+:where(#rcjxnzhhwy) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#tbglpwtlsa) .gt_table_body {
+:where(#rcjxnzhhwy) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1094,7 +1082,7 @@ GGally installed</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_footnotes {
+:where(#rcjxnzhhwy) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1108,7 +1096,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_footnote {
+:where(#rcjxnzhhwy) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1117,7 +1105,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#tbglpwtlsa) .gt_sourcenotes {
+:where(#rcjxnzhhwy) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1131,7 +1119,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#tbglpwtlsa) .gt_sourcenote {
+:where(#rcjxnzhhwy) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1139,64 +1127,64 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#tbglpwtlsa) .gt_left {
+:where(#rcjxnzhhwy) .gt_left {
   text-align: left;
 }
 
-:where(#tbglpwtlsa) .gt_center {
+:where(#rcjxnzhhwy) .gt_center {
   text-align: center;
 }
 
-:where(#tbglpwtlsa) .gt_right {
+:where(#rcjxnzhhwy) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#tbglpwtlsa) .gt_font_normal {
+:where(#rcjxnzhhwy) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#tbglpwtlsa) .gt_font_bold {
+:where(#rcjxnzhhwy) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#tbglpwtlsa) .gt_font_italic {
+:where(#rcjxnzhhwy) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#tbglpwtlsa) .gt_super {
+:where(#rcjxnzhhwy) .gt_super {
   font-size: 65%;
 }
 
-:where(#tbglpwtlsa) .gt_footnote_marks {
+:where(#rcjxnzhhwy) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#tbglpwtlsa) .gt_asterisk {
+:where(#rcjxnzhhwy) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#tbglpwtlsa) .gt_indent_1 {
+:where(#rcjxnzhhwy) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#tbglpwtlsa) .gt_indent_2 {
+:where(#rcjxnzhhwy) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#tbglpwtlsa) .gt_indent_3 {
+:where(#rcjxnzhhwy) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#tbglpwtlsa) .gt_indent_4 {
+:where(#rcjxnzhhwy) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#tbglpwtlsa) .gt_indent_5 {
+:where(#rcjxnzhhwy) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1255,20 +1243,20 @@ GGally installed</code></pre>
 </div>
 <p>Agreguemos la fuente a nuestra tabla:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span>gt_tabla <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="st">"Fuente: Cálculos propios con datos de INEGI"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gt_tabla<span class="ot">&lt;-</span>gt_tabla <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="st">"Fuente: Cálculos propios con datos de INEGI"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>gt_tabla</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="hxdbdzuxod" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bfmrwherqc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#hxdbdzuxod) .gt_table {
+:where(#bfmrwherqc) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1293,7 +1281,7 @@ GGally installed</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_heading {
+:where(#bfmrwherqc) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1305,12 +1293,12 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_caption {
+:where(#bfmrwherqc) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#hxdbdzuxod) .gt_title {
+:where(#bfmrwherqc) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1322,7 +1310,7 @@ GGally installed</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#hxdbdzuxod) .gt_subtitle {
+:where(#bfmrwherqc) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1334,13 +1322,13 @@ GGally installed</code></pre>
   border-top-width: 0;
 }
 
-:where(#hxdbdzuxod) .gt_bottom_border {
+:where(#bfmrwherqc) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_col_headings {
+:where(#bfmrwherqc) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1355,7 +1343,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_col_heading {
+:where(#bfmrwherqc) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1375,7 +1363,7 @@ GGally installed</code></pre>
   overflow-x: hidden;
 }
 
-:where(#hxdbdzuxod) .gt_column_spanner_outer {
+:where(#bfmrwherqc) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1387,15 +1375,15 @@ GGally installed</code></pre>
   padding-right: 4px;
 }
 
-:where(#hxdbdzuxod) .gt_column_spanner_outer:first-child {
+:where(#bfmrwherqc) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#hxdbdzuxod) .gt_column_spanner_outer:last-child {
+:where(#bfmrwherqc) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#hxdbdzuxod) .gt_column_spanner {
+:where(#bfmrwherqc) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1407,7 +1395,7 @@ GGally installed</code></pre>
   width: 100%;
 }
 
-:where(#hxdbdzuxod) .gt_group_heading {
+:where(#bfmrwherqc) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1433,7 +1421,7 @@ GGally installed</code></pre>
   text-align: left;
 }
 
-:where(#hxdbdzuxod) .gt_empty_group_heading {
+:where(#bfmrwherqc) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1448,15 +1436,15 @@ GGally installed</code></pre>
   vertical-align: middle;
 }
 
-:where(#hxdbdzuxod) .gt_from_md > :first-child {
+:where(#bfmrwherqc) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#hxdbdzuxod) .gt_from_md > :last-child {
+:where(#bfmrwherqc) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#hxdbdzuxod) .gt_row {
+:where(#bfmrwherqc) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1475,7 +1463,7 @@ GGally installed</code></pre>
   overflow-x: hidden;
 }
 
-:where(#hxdbdzuxod) .gt_stub {
+:where(#bfmrwherqc) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1488,7 +1476,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#hxdbdzuxod) .gt_stub_row_group {
+:where(#bfmrwherqc) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1502,11 +1490,11 @@ GGally installed</code></pre>
   vertical-align: top;
 }
 
-:where(#hxdbdzuxod) .gt_row_group_first td {
+:where(#bfmrwherqc) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#hxdbdzuxod) .gt_summary_row {
+:where(#bfmrwherqc) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1516,16 +1504,16 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#hxdbdzuxod) .gt_first_summary_row {
+:where(#bfmrwherqc) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_first_summary_row.thick {
+:where(#bfmrwherqc) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#hxdbdzuxod) .gt_last_summary_row {
+:where(#bfmrwherqc) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1535,7 +1523,7 @@ GGally installed</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_grand_summary_row {
+:where(#bfmrwherqc) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1545,7 +1533,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#hxdbdzuxod) .gt_first_grand_summary_row {
+:where(#bfmrwherqc) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1555,11 +1543,11 @@ GGally installed</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_striped {
+:where(#bfmrwherqc) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#hxdbdzuxod) .gt_table_body {
+:where(#bfmrwherqc) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1568,7 +1556,7 @@ GGally installed</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_footnotes {
+:where(#bfmrwherqc) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1582,7 +1570,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_footnote {
+:where(#bfmrwherqc) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1591,7 +1579,7 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#hxdbdzuxod) .gt_sourcenotes {
+:where(#bfmrwherqc) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1605,7 +1593,7 @@ GGally installed</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#hxdbdzuxod) .gt_sourcenote {
+:where(#bfmrwherqc) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1613,64 +1601,64 @@ GGally installed</code></pre>
   padding-right: 5px;
 }
 
-:where(#hxdbdzuxod) .gt_left {
+:where(#bfmrwherqc) .gt_left {
   text-align: left;
 }
 
-:where(#hxdbdzuxod) .gt_center {
+:where(#bfmrwherqc) .gt_center {
   text-align: center;
 }
 
-:where(#hxdbdzuxod) .gt_right {
+:where(#bfmrwherqc) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#hxdbdzuxod) .gt_font_normal {
+:where(#bfmrwherqc) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#hxdbdzuxod) .gt_font_bold {
+:where(#bfmrwherqc) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#hxdbdzuxod) .gt_font_italic {
+:where(#bfmrwherqc) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#hxdbdzuxod) .gt_super {
+:where(#bfmrwherqc) .gt_super {
   font-size: 65%;
 }
 
-:where(#hxdbdzuxod) .gt_footnote_marks {
+:where(#bfmrwherqc) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#hxdbdzuxod) .gt_asterisk {
+:where(#bfmrwherqc) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#hxdbdzuxod) .gt_indent_1 {
+:where(#bfmrwherqc) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#hxdbdzuxod) .gt_indent_2 {
+:where(#bfmrwherqc) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#hxdbdzuxod) .gt_indent_3 {
+:where(#bfmrwherqc) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#hxdbdzuxod) .gt_indent_4 {
+:where(#bfmrwherqc) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#hxdbdzuxod) .gt_indent_5 {
+:where(#bfmrwherqc) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1740,7 +1728,7 @@ GGally installed</code></pre>
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="medidas-numéricas-básicas"><span class="header-section-number">2.4.1</span> Medidas numéricas básicas</h3>
 <p>5 números</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tlaxt322<span class="sc">$</span>ing_x_hrs) <span class="do">## ingreso por horas </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tlaxt322<span class="sc">$</span>ing_x_hrs) <span class="do">## ingreso por horas </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.00    0.00    0.00   12.10   18.75 1356.59 </code></pre>
@@ -1748,8 +1736,8 @@ GGally installed</code></pre>
 </div>
 <p>Con pipes se pueden crear “indicadores” de nuestras variables es un tibble</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nombre_indicador=</span><span class="fu">mean</span>(ing_x_hrs, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tlaxt322<span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nombre_indicador=</span><span class="fu">mean</span>(ing_x_hrs, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   nombre_indicador
@@ -1767,27 +1755,27 @@ GGally installed</code></pre>
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="gráficos-de-base"><span class="header-section-number">2.5.1</span> Gráficos de base</h3>
 <p>“plot()” Es la función más simple.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">as_label</span>(tlaxt322<span class="sc">$</span>niv_ins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">as_label</span>(tlaxt322<span class="sc">$</span>niv_ins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Esto es igual que:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(<span class="fu">as_label</span>(tlaxt322<span class="sc">$</span>niv_ins)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(<span class="fu">as_label</span>(tlaxt322<span class="sc">$</span>niv_ins)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Histograma y el boxplot</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ICI_2021<span class="sc">$</span>esperanza_de_vida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ICI_2021<span class="sc">$</span>esperanza_de_vida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ICI_2021<span class="sc">$</span>esperanza_de_vida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ICI_2021<span class="sc">$</span>esperanza_de_vida)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1817,10 +1805,10 @@ GGally installed</code></pre>
 <h2 data-number="2.7" class="anchored" data-anchor-id="un-lienzo-para-dibujar"><span class="header-section-number">2.7</span> Un lienzo para dibujar</h2>
 <p>Para hacer un gráfico, ggplot2 tiene el comando “ggplot()”. Hacer gráficos con esta función tiene una lógica aditiva. Lo ideal es que iniciemos estableciendo el mapeo estético de nuestro gráfico, con el comando aes()</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as_label</span>(niv_ins)))</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>g1 <span class="do">## imprime el lienzo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as_label</span>(niv_ins)))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>g1 <span class="do">## imprime el lienzo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1831,25 +1819,25 @@ GGally installed</code></pre>
 <section id="para-cualitativas" class="level3" data-number="2.8.1">
 <h3 data-number="2.8.1" class="anchored" data-anchor-id="para-cualitativas"><span class="header-section-number">2.8.1</span> Para cualitativas</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">as_label</span>(niv_ins)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  )) <span class="do">## colorea la geometría</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">as_label</span>(niv_ins)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  )) <span class="do">## colorea la geometría</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Esto es equivalente</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as_label</span>(niv_ins),</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> <span class="fu">as_label</span>(niv_ins)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>             )</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Esto es equivalente</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as_label</span>(niv_ins),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> <span class="fu">as_label</span>(niv_ins)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -1859,10 +1847,10 @@ GGally installed</code></pre>
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="para-variables-cuantitativas"><span class="header-section-number">2.8.2</span> Para variables cuantitativas</h3>
 <p>Podemos hacer histogramas y gráficos de densidad, de manera fácil. La idea es agregar en nuestro “lienzo” una geometría, un valor para dibujar en él. Esto se agrega con un “+” y con la figura que se añadirá a nuestro gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>g2<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(eda))</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>g2 <span class="do">## imprime el lienzo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>g2<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(eda))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>g2 <span class="do">## imprime el lienzo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1870,7 +1858,7 @@ GGally installed</code></pre>
 <section id="histograma" class="level4" data-number="2.8.2.1">
 <h4 data-number="2.8.2.1" class="anchored" data-anchor-id="histograma"><span class="header-section-number">2.8.2.1</span> Histograma</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="sc">+</span> <span class="fu">geom_histogram</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="sc">+</span> <span class="fu">geom_histogram</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
@@ -1884,10 +1872,10 @@ GGally installed</code></pre>
 <h3 data-number="2.8.3" class="anchored" data-anchor-id="intro-a-dos-variables"><span class="header-section-number">2.8.3</span> Intro a dos variables</h3>
 <p>Vamos a terminar con un código que resume mucho de lo que hemos visto hoy:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="do">## nos quedamos sólo con los ocupados</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eda, ing_x_hrs, anios_esc) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  GGally<span class="sc">::</span><span class="fu">ggpairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="do">## nos quedamos sólo con los ocupados</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eda, ing_x_hrs, anios_esc) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  GGally<span class="sc">::</span><span class="fu">ggpairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="P2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1903,7 +1891,7 @@ GGally installed</code></pre>
 <p>Este comando nos sirve para calcular diferentes tipos de test, que tienen como base la distribución t</p>
 <p><b>Univariado para estimación</b></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs) <span class="do">## pero no tenemos los filtro</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs) <span class="do">## pero no tenemos los filtro</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1920,12 +1908,12 @@ mean of x
 </div>
 <p>Un truco para poder utilizar funciones de base con formato <em>tidy</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t.test</span>(ing_x_hrs)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t.test</span>(ing_x_hrs)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1944,12 +1932,12 @@ mean of x
 <p><b>Univariado para hipótesis específica</b></p>
 <p><span class="math display">\[ H_o:\mu=40 \]</span> <span class="math display">\[ H_{a1}: \mu &lt; 40 \]</span> <span class="math display">\[ H_{a2}: \mu \neq 40 \]</span> <span class="math display">\[ H_{a3}: \mu &gt; 40 \]</span> Si hacemos explícita la <span class="math inline">\(H_0\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>)</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1966,12 +1954,12 @@ mean of x
 </div>
 <p>Para hacer explícitas las hipótesis alternativas</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>) <span class="co">#default y de dos colas</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>) <span class="co">#default y de dos colas</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1987,12 +1975,12 @@ mean of x
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>) <span class="do">## cola derecha</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>) <span class="do">## cola derecha</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -2008,12 +1996,12 @@ mean of x
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>, <span class="at">alternative =</span> <span class="st">"less"</span>) <span class="do">## cola izquierda</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>, <span class="at">alternative =</span> <span class="st">"less"</span>) <span class="do">## cola izquierda</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -2033,16 +2021,16 @@ mean of x
 <h4 data-number="2.9.1.2" class="anchored" data-anchor-id="enchulando-un-poquito"><span class="header-section-number">2.9.1.2</span> Enchulando un poquito</h4>
 <p>Los resultados tienen la info, pero la podemos almacenar en un objeto. Con los cálculos de modelos es muy útil guardarlos para compararlos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>t.test0<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>t.test0<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t.test</span>(tlaxt322<span class="sc">$</span>ing_x_hrs, <span class="at">mu=</span><span class="dv">40</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Veamos si lo imprimimos</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>t.test0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>t.test0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -2058,7 +2046,7 @@ mean of x
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(t.test0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(t.test0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 8
   estimate statistic p.value parameter conf.low conf.high method         alter…¹
@@ -2070,10 +2058,10 @@ mean of x
 <p>La función “tidy()” hace que el resultado se vuelva un “tibble”, una tabla muy compatible con el tidyverse. Esto puede ser útil cuando queremos ir comparando estimaciones.</p>
 <p>Anteriormente vimos con base cómo hacer inferencia. El paquete “infer” tiene también elementos para inferencia, pero en formato más compatible con tidyverse.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  infer<span class="sc">::</span><span class="fu">t_test</span>(<span class="at">response =</span> ing_x_hrs, <span class="at">mu =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(clase2<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtro de ocupados</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ing_x_hrs<span class="sc">&gt;</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co">#Filtros de quienes reportaron ingresos</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  infer<span class="sc">::</span><span class="fu">t_test</span>(<span class="at">response =</span> ing_x_hrs, <span class="at">mu =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 7
   statistic  t_df p_value alternative estimate lower_ci upper_ci
@@ -2084,8 +2072,8 @@ mean of x
 <p>Como vemos nos da el mismo resultado anterior, pero nos da directamente el resultado en formato tidy.</p>
 <p>Si solo queremos el estimador de “t”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t_stat</span>(<span class="at">response =</span> ing_x_hrs, <span class="at">mu =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t_stat</span>(<span class="at">response =</span> ing_x_hrs, <span class="at">mu =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The t_stat() wrapper has been deprecated in favor of the more general
 observe(). Please use that function instead.</code></pre>
@@ -2103,8 +2091,8 @@ observe(). Please use that function instead.</code></pre>
 <p>Vamos a revisar la proporción de hombres y mujeres en términos de participación laboral.</p>
 <p>El comando de base es menos flexible:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>prop<span class="ot">&lt;-</span><span class="fu">table</span>(tlaxt322[tlaxt322<span class="sc">$</span>clase1<span class="sc">&gt;</span><span class="dv">0</span>,]<span class="sc">$</span>clase1)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(prop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>prop<span class="ot">&lt;-</span><span class="fu">table</span>(tlaxt322[tlaxt322<span class="sc">$</span>clase1<span class="sc">&gt;</span><span class="dv">0</span>,]<span class="sc">$</span>clase1)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(prop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     1-sample proportions test with continuity correction
@@ -2121,10 +2109,10 @@ sample estimates:
 </div>
 <p>Los filtros se complican un poco…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span> <span class="co">#oo</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(clase1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span> <span class="co">#oo</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(clase1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                             clase1    n   percent
                           No aplica    0 0.0000000
@@ -2134,14 +2122,14 @@ sample estimates:
 </div>
 <p>Vamos a aprovechar para re-etiquetar la variable clase1</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>etiqueta_pea<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"PEA"</span>, <span class="st">"PNEA"</span>) <span class="do">## un vector con las etiquetas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>etiqueta_pea<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"PEA"</span>, <span class="st">"PNEA"</span>) <span class="do">## un vector con las etiquetas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  sjlabelled<span class="sc">::</span><span class="fu">set_labels</span>(clase1, <span class="at">labels=</span>etiqueta_pea) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span> </span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(clase1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  sjlabelled<span class="sc">::</span><span class="fu">set_labels</span>(clase1, <span class="at">labels=</span>etiqueta_pea) <span class="sc">%&gt;%</span> </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(clase1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> clase1    n   percent
     PEA 5326 0.6208183
@@ -2150,12 +2138,12 @@ sample estimates:
 </div>
 <p>En formato tidy</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table</span>(clase1)</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table</span>(clase1)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     1-sample proportions test with continuity correction
@@ -2172,29 +2160,29 @@ sample estimates:
 </div>
 <p>En base necesita que se alimente de un objeto tipo table, el cual es menos manejable. Por eso utilizaremos más el paquete <em>infer</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_labels</span>(clase1, <span class="at">labels=</span>etiqueta_pea) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span>   </span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  infer<span class="sc">::</span><span class="fu">prop_test</span>(clase1 <span class="sc">~</span> <span class="cn">NULL</span>  ,</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">p=</span><span class="fl">0.7</span>, </span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative=</span><span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_labels</span>(clase1, <span class="at">labels=</span>etiqueta_pea) <span class="sc">%&gt;%</span> </span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span>   </span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  infer<span class="sc">::</span><span class="fu">prop_test</span>(clase1 <span class="sc">~</span> <span class="cn">NULL</span>  ,</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">p=</span><span class="fl">0.7</span>, </span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative=</span><span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   statistic chisq_df  p_value alternative
       &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt;      
 1      256.        1 7.22e-58 less       </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Para que nos dé Z</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_labels</span>(clase1, <span class="at">labels=</span>etiqueta_pea) <span class="sc">%&gt;%</span> </span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span>   </span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  infer<span class="sc">::</span><span class="fu">prop_test</span>(clase1 <span class="sc">~</span> <span class="cn">NULL</span>  ,</span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">p=</span><span class="fl">0.7</span>, </span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative=</span><span class="st">"less"</span>,</span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">success =</span> <span class="st">"PEA"</span>, <span class="do">## necesitamos establecer el éxito</span></span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">z=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Para que nos dé Z</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eda<span class="sc">&gt;</span><span class="dv">14</span> <span class="sc">&amp;</span> eda<span class="sc">&lt;</span><span class="dv">99</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_labels</span>(clase1, <span class="at">labels=</span>etiqueta_pea) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clase1=</span><span class="fu">as_label</span>(clase1)) <span class="sc">%&gt;%</span>   </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  infer<span class="sc">::</span><span class="fu">prop_test</span>(clase1 <span class="sc">~</span> <span class="cn">NULL</span>  ,</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">p=</span><span class="fl">0.7</span>, </span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative=</span><span class="st">"less"</span>,</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">success =</span> <span class="st">"PEA"</span>, <span class="do">## necesitamos establecer el éxito</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">z=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   statistic  p_value alternative

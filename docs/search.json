@@ -53,28 +53,28 @@
     "href": "instala.html#introducción-a-r",
     "title": "Instalación de R y Rstudio",
     "section": "Introducción a R",
-    "text": "Introducción a R\nhttps://youtu.be/YkN5urybh2A Video en YouTube"
+    "text": "Introducción a R"
   },
   {
     "objectID": "instala.html#instalación-en-os",
     "href": "instala.html#instalación-en-os",
     "title": "Instalación de R y Rstudio",
     "section": "Instalación en OS",
-    "text": "Instalación en OS\nhttps://youtu.be/icWV8jzYOtA Viedo en YouTube"
+    "text": "Instalación en OS"
   },
   {
     "objectID": "instala.html#instalación-en-pc",
     "href": "instala.html#instalación-en-pc",
     "title": "Instalación de R y Rstudio",
     "section": "Instalación en PC",
-    "text": "Instalación en PC\nhttps://youtu.be/TNSQikMfgJI Video en YouTube"
+    "text": "Instalación en PC"
   },
   {
     "objectID": "instala.html#ojo",
     "href": "instala.html#ojo",
     "title": "Instalación de R y Rstudio",
     "section": "Ojo",
-    "text": "Ojo\nPronto RStudio se volverá “posit”"
+    "text": "Ojo\nDesde octubre de 2022, RStudio se volvió “Posit”"
   },
   {
     "objectID": "P1.html#paquetes",
@@ -116,7 +116,7 @@
     "href": "P2.html#paquetes",
     "title": "2  Repaso de {ggplot2} e introducción a la inferencia.",
     "section": "2.1 Paquetes",
-    "text": "2.1 Paquetes\n\nif (!require(\"pacman\")) install.packages(\"pacman\")#instala pacman si se requiere\n\nLoading required package: pacman\n\npacman::p_load(tidyverse,\n               readxl,\n               writexl, \n               haven,\n               sjlabelled, \n               janitor,\n               infer, \n               ggpubr,\n               magrittr,\n               gt,\n               GGally,\n               broom,\n               DescTools,\n               wesanderson)\n\nalso installing the dependency 'reshape'\n\n\n\nThe downloaded binary packages are in\n    /var/folders/cs/l39f28z17sd6hk2mhxkpgz_c0000gn/T//RtmpiSDTYn/downloaded_packages\n\n\n\nGGally installed"
+    "text": "2.1 Paquetes\n\nif (!require(\"pacman\")) install.packages(\"pacman\")#instala pacman si se requiere\n\nLoading required package: pacman\n\npacman::p_load(tidyverse,\n               readxl,\n               writexl, \n               haven,\n               sjlabelled, \n               janitor,\n               infer, \n               ggpubr,\n               magrittr,\n               gt,\n               GGally,\n               broom,\n               DescTools,\n               wesanderson)"
   },
   {
     "objectID": "P2.html#cargando-los-datos",
