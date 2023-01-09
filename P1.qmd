@@ -1,4 +1,4 @@
-# Introducción: `{dplyr}` y `{ggplot2}`
+# Introducción: `{dplyr}`
 
 ## Paquetes
 
@@ -242,69 +242,3 @@ tlaxt322%>%
   adorn_pct_formatting() # lo vuelve porcentaje
 ```
 
-## *Grammar of tables: gt*
-
-Es un paquete que nos permite poner nuestras tablas en mejores formatos.
-
-Guardemos un ejemplo anterior en un objeto
-
-```{r}
-mi_tabla<-tlaxt322%>% 
-  mutate(niv_ins=as_label(niv_ins)) %>% # para que las lea como factor
-  mutate(sex=as_label(sex)) %>% # para que las lea como factor
-  tabyl(niv_ins, sex, show_missing_levels=F ) %>% # incluimos aquí sexo
-  adorn_totals(c("col", "row")) %>% 
-   adorn_percentages("all") %>% # Divide los valores entre el total de la población
-  adorn_pct_formatting() # lo vuelve porcentaje
-```
-
-Veamos qué pasa con el comando "gt"
-
-```{r}
-gt_tabla<-gt(mi_tabla)
-gt_tabla
-```
-
-Con este formato será bastante sencillo agregar títulos y demás:
-
-```{r}
-gt_tabla<-gt_tabla %>%
-  tab_header(
-    title = "Distribución del sexo de la población según nivel de escolaridad",
-    subtitle = "Tlaxcala, trimestre III de 2022"
-  )
-
-gt_tabla
-```
-
-Agreguemos la fuente a nuestra tabla:
-
-```{r}
-gt_tabla<-gt_tabla %>%
-  tab_source_note(
-    source_note = "Fuente: Cálculos propios con datos de INEGI"
-  )
-
-gt_tabla
-```
-
-Checa más de este paquete por aquí <https://gt.rstudio.com/articles/intro-creating-gt-tables.html>
-
-## Descriptivos para variables cuantitativas
-
-Vamos a empezar a revisar los gráficos para variables cuantitativas.
-
-### Medidas numéricas básicas
-
-5 números
-
-```{r}
-summary(tlaxt322$ing_x_hrs) ## ingreso por horas 
-```
-
-Con pipes se pueden crear "indicadores" de nuestras variables es un tibble
-
-```{r}
-tlaxt322%>% 
-  summarise(nombre_indicador=mean(ing_x_hrs, na.rm=T))
-```

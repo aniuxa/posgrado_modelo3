@@ -2,61 +2,59 @@
 
 ## Objetivo general
 
-Que  el estudiantado sea capaz de realizar inferencia estadística y modelado de una variable dependiente utilizando R aplicado a las bases de datos mexicanas.
+Que el estudiantado sea capaz de realizar inferencia estadística y modelado de una variable dependiente utilizando R aplicado a las bases de datos mexicanas.
 
 ## Temas
 
-**1.	 Revisión de elementos estadísticos básicos desde “tidyverse” **
+**1. Revisión de elementos estadísticos básicos desde "tidyverse"**
 
-a.	Tablas de múltiples entradas
+a.  Tablas de múltiples entradas
 
-b.	Repaso de ggplot2
+b.  Repaso de ggplot2
 
+**2. Pruebas de hipótesis e intervalos de confianza**
 
-**2.	Pruebas de hipótesis e intervalos de confianza **
+a.  De una sola media
 
-a.	De una sola media
+b.  De dos medias
 
-b.	De dos medias
+c.  Medias apareadas
 
-c.	Medias apareadas
+d.  Proporciones
 
-d.	Proporciones
+e.  Diferencia de proporciones
 
-e.	Diferencia de proporciones
+f.  Chi-cuadrado de independencia
 
-f.	Chi-cuadrado de independencia
+g.  Prueba ANOVA de un solo factor
 
-g.	Prueba ANOVA de un solo factor
+h.  Pruebas no parámetricas
 
-h.	Pruebas no parámetricas
+**3. Factores de expansión y diseño muestral complejo**
 
-**3.	Factores de expansión y diseño muestral complejo**
+a.  De "survey" a "srvyr"
 
-a.	De “survey” a “srvyr”
+b.  Tabulados
 
-b.	Tabulados
+c.  Intervalos de confianza para medias y cuantiles
 
-c.	Intervalos de confianza para medias y cuantiles
+**4. Introducción al modelo de regresión lineal**
 
-**4.	Introducción al modelo de regresión lineal**
+a.  Simple
 
-a.	Simple
+b.  Múltiple
 
-b.	Múltiple
+c.  Evaluación de supuestos
 
-c.	Evaluación de supuestos
+**5. Introducción a los modelos lineales generalizados**
 
-**5.	Introducción a los modelos lineales generalizados **
+a.  Introducción a la regresión logística
 
-a.	Introducción a la regresión logística
+b.  Evaluación de supuestos
 
-b.	Evaluación de supuestos
+c.  Efectos marginales
 
-c.	Efectos marginales
-
-d.	Interacciones y efectos de más de primer orden
-
+d.  Interacciones y efectos de más de primer orden
 
 ## Metodología
 
@@ -78,8 +76,8 @@ Con este proyecto se trabajará a lo largo del curso
 
 Esta es la tercera vez que se imparte el curso. Las versiones anteriores están
 
-- <https://aniuxa.github.io/posgrado_modelo/>
-- <https://aniuxa.github.io/posgrado_modelo2/>
+-   <https://aniuxa.github.io/posgrado_modelo/>
+-   <https://aniuxa.github.io/posgrado_modelo2/>
 
 ## Facilitadora
 

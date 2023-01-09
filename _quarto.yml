@@ -15,6 +15,8 @@ book:
     - index.qmd
     - instala.qmd
     - P1.qmd
+    - P2.qmd
+    - anexo.qmd
   
 format:
   html:
