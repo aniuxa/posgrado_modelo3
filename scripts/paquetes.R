@@ -33,3 +33,10 @@ pacman::p_load(tidyverse, # conjunto de paquetes tidy
                stargazer, #Tablas de estimaciones de modelos
                srvyr # diseño muestral
 )
+
+
+if (!require("remotes")) {
+  install.packages("remotes")
+}
+
+remotes::install_github("diegovalle/mxmaps")
