@@ -1,4 +1,4 @@
-# Repaso de `{ggplot2}` e introducción a la inferencia.
+# Repaso de visualización de datos y `{ggplot2}` 
 
 ## Paquetes
 
@@ -164,7 +164,7 @@ Vamos a revisar una presentación que es muy interesante
 
 -   <https://huygens.science.uva.nl/ggPlotteR/> Hace gráficos de ggplot con la base de datos de Gapminder
 
-## Un lienzo para dibujar
+### Un lienzo para dibujar
 
 Para hacer un gráfico, ggplot2 tiene el comando "ggplot()". Hacer gráficos con esta función tiene una lógica aditiva. Lo ideal es que iniciemos estableciendo el mapeo estético de nuestro gráfico, con el comando aes()
 
@@ -175,9 +175,9 @@ g1<-tlaxt322 %>%
 g1 ## imprime el lienzo
 ```
 
-## Gráficos univariados
+### Gráficos univariados
 
-### Para cualitativas
+#### Para cualitativas
 
 ```{r}
 g1 + geom_bar()
@@ -198,7 +198,7 @@ tlaxt322 %>%
 
 ```
 
-### Para variables cuantitativas
+#### Para variables cuantitativas
 
 Podemos hacer histogramas y gráficos de densidad, de manera fácil. La idea es agregar en nuestro "lienzo" una geometría, un valor para dibujar en él. Esto se agrega con un "+" y con la figura que se añadirá a nuestro gráfico.
 
@@ -209,13 +209,44 @@ g2<-tlaxt322 %>%
 g2 ## imprime el lienzo
 ```
 
-#### Histograma
+##### Histograma
 
 ```{r}
 g2 + geom_histogram() 
 ```
 
-### Intro a dos variables
+
+##### Densidad
+
+```{r}
+g2 + geom_density()
+```
+
+## Intro a dos variables
+
+Para hacer un lienzo con dos variables:
+
+```{r}
+tlaxt322 %>% 
+  filter(ing_x_hrs>0) %>%  
+  filter(anios_esc<99) %>%  #
+  ggplot()+
+  aes(x = anios_esc,
+      y = ing_x_hrs)
+```
+
+Con esto podemos agregar la geometría de puntito:
+
+```{r}
+tlaxt322 %>% 
+  filter(ing_x_hrs>0) %>%  
+  filter(anios_esc<99) %>%  #
+  ggplot()+
+  aes(x = anios_esc,
+      y = ing_x_hrs) +
+  geom_point()
+```
+
 
 Vamos a terminar con un código que resume mucho de lo que hemos visto hoy:
 
@@ -224,193 +255,4 @@ tlaxt322 %>%
   filter(clase2==1) %>%  ## nos quedamos sólo con los ocupados
   select(eda, ing_x_hrs, anios_esc) %>% 
   GGally::ggpairs()
-```
-
-## Introducción a la inferencia
-
-### Hipótesis e intervalos de confianza
-
-#### t-test
-
-Este comando nos sirve para calcular diferentes tipos de test, que tienen como base la distribución t
-
-<b>Univariado para estimación</b>
-
-```{r}
-t.test(tlaxt322$ing_x_hrs) ## pero no tenemos los filtro
-```
-
-Un truco para poder utilizar funciones de base con formato *tidy*
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  with(
-    t.test(ing_x_hrs)
-  )
-```
-
-Vamos a quedarnos a con esta población objetivo:
-
-<b>Univariado para hipótesis específica</b>
-
-$$ H_o:\mu=40 $$ $$ H_{a1}: \mu < 40 $$ $$ H_{a2}: \mu \neq 40 $$ $$ H_{a3}: \mu > 40 $$ Si hacemos explícita la $H_0$
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  with(
-    t.test(tlaxt322$ing_x_hrs, mu=40)
-    )
-```
-
-Para hacer explícitas las hipótesis alternativas
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  with(
-  t.test(tlaxt322$ing_x_hrs, mu=40, alternative = "two.sided") #default y de dos colas
-    )
-```
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  with(
-  t.test(tlaxt322$ing_x_hrs, mu=40, alternative = "greater") ## cola derecha
-    )
-```
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  with(
-  t.test(tlaxt322$ing_x_hrs, mu=40, alternative = "less") ## cola izquierda
-    )
-```
-
-#### Enchulando un poquito
-
-Los resultados tienen la info, pero la podemos almacenar en un objeto. Con los cálculos de modelos es muy útil guardarlos para compararlos.
-
-```{r}
-t.test0<-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  with(
-    t.test(tlaxt322$ing_x_hrs, mu=40)
-    )
-```
-
-Veamos si lo imprimimos
-
-```{r}
-t.test0
-```
-
-```{r}
-broom::tidy(t.test0)
-```
-
-La función "tidy()" hace que el resultado se vuelva un "tibble", una tabla muy compatible con el tidyverse. Esto puede ser útil cuando queremos ir comparando estimaciones.
-
-Anteriormente vimos con base cómo hacer inferencia. El paquete "infer" tiene también elementos para inferencia, pero en formato más compatible con tidyverse.
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% #Filtro de ocupados
-  filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
-  infer::t_test(response = ing_x_hrs, mu = 40)
-
-```
-
-Como vemos nos da el mismo resultado anterior, pero nos da directamente el resultado en formato tidy.
-
-Si solo queremos el estimador de "t"
-
-```{r}
-tlaxt322 %>% 
-t_stat(response = ing_x_hrs, mu = 40)
-
-```
-
-Más de este paquete <https://infer.netlify.app/>
-
-### Proporción
-
-Vamos a revisar la proporción de hombres y mujeres en términos de participación laboral.
-
-El comando de base es menos flexible:
-
-```{r}
-prop<-table(tlaxt322[tlaxt322$clase1>0,]$clase1)
-prop.test(prop)
-```
-
-Los filtros se complican un poco...
-
-```{r}
-tlaxt322 %>% 
-  filter(eda>14 & eda<99) %>% 
-  mutate(clase1=as_label(clase1)) %>% #oo
-  tabyl(clase1)
-```
-
-Vamos a aprovechar para re-etiquetar la variable clase1
-
-```{r}
-etiqueta_pea<-c("PEA", "PNEA") ## un vector con las etiquetas
-```
-
-```{r}
-tlaxt322 %>% 
-  filter(eda>14 & eda<99) %>% 
-  sjlabelled::set_labels(clase1, labels=etiqueta_pea) %>% 
-  mutate(clase1=as_label(clase1)) %>% 
-  tabyl(clase1)
-
-```
-
-En formato tidy
-
-```{r}
-
-tlaxt322 %>% 
-  filter(eda>14 & eda<99) %>% 
-  with(
-    table(clase1)
-    ) %>% 
-  prop.test()
-
-```
-
-En base necesita que se alimente de un objeto tipo table, el cual es menos manejable. Por eso utilizaremos más el paquete *infer*
-
-```{r}
-tlaxt322 %>% 
-  filter(eda>14 & eda<99) %>% 
-  set_labels(clase1, labels=etiqueta_pea) %>% 
-  mutate(clase1=as_label(clase1)) %>%   
-  infer::prop_test(clase1 ~ NULL  ,
-             p=0.7, 
-            alternative="less")
-
-
-## Para que nos dé Z
-tlaxt322 %>% 
-  filter(eda>14 & eda<99) %>% 
-  set_labels(clase1, labels=etiqueta_pea) %>% 
-  mutate(clase1=as_label(clase1)) %>%   
-  infer::prop_test(clase1 ~ NULL  ,
-            p=0.7, 
-            alternative="less",
-            success = "PEA", ## necesitamos establecer el éxito
-            z=TRUE)
-
 ```

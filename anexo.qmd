@@ -8,6 +8,14 @@
 
 Los scripts están en esta carpeta: <https://github.com/aniuxa/posgrado_modelo3/tree/main/scripts>
 
+## Cuestionarios
+
+### Primer cuestionario
+
+Después de la sesión 1 y 2
+
+[Cuestionario](https://forms.gle/EQnP9SvpWoTWLRm86)
+
 ## Sesión 1
 
 ### Video
@@ -16,6 +24,4 @@ Los scripts están en esta carpeta: <https://github.com/aniuxa/posgrado_modelo3/
 
 ### Cheat Sheets
 
--   RStudio IDE: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf>
-
--   dplyr: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf>
+-   ggplot2: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf>
