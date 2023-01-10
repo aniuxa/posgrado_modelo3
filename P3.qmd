@@ -371,7 +371,7 @@ tlaxt322  %>%
 
 
 
-## Factores de expansión 
+## Factores de expansión y diseño muestral
 
 ### La función tally
 
@@ -395,7 +395,7 @@ tlaxt322  %>%
 ```
 
 
-## Otras formas
+### Otras formas
 La función `count()` también permite dar pesos
 
 ```{r}
@@ -431,7 +431,7 @@ tlaxt322  %>%
   adorn_pct_formatting()
 ```
 
-#Diseño complejo
+### Diseño complejo
 
 Hay muchos diseños muestrales, asumiremos el diseño simple, pero hay que revisar la documentación de la base
 ```{r}

@@ -217,11 +217,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#supuestos-de-anova" id="toc-supuestos-de-anova" class="nav-link" data-scroll-target="#supuestos-de-anova"><span class="toc-section-number">3.4.3</span>  Supuestos de ANOVA</a></li>
   <li><a href="#kruskal-wallis-test" id="toc-kruskal-wallis-test" class="nav-link" data-scroll-target="#kruskal-wallis-test"><span class="toc-section-number">3.4.4</span>  Kruskal-Wallis test</a></li>
   </ul></li>
-  <li><a href="#factores-de-expansión" id="toc-factores-de-expansión" class="nav-link" data-scroll-target="#factores-de-expansión"><span class="toc-section-number">3.5</span>  Factores de expansión</a>
+  <li><a href="#factores-de-expansión-y-diseño-muestral" id="toc-factores-de-expansión-y-diseño-muestral" class="nav-link" data-scroll-target="#factores-de-expansión-y-diseño-muestral"><span class="toc-section-number">3.5</span>  Factores de expansión y diseño muestral</a>
   <ul class="collapse">
   <li><a href="#la-función-tally" id="toc-la-función-tally" class="nav-link" data-scroll-target="#la-función-tally"><span class="toc-section-number">3.5.1</span>  La función tally</a></li>
+  <li><a href="#otras-formas" id="toc-otras-formas" class="nav-link" data-scroll-target="#otras-formas"><span class="toc-section-number">3.5.2</span>  Otras formas</a></li>
+  <li><a href="#diseño-complejo" id="toc-diseño-complejo" class="nav-link" data-scroll-target="#diseño-complejo"><span class="toc-section-number">3.5.3</span>  Diseño complejo</a></li>
   </ul></li>
-  <li><a href="#otras-formas" id="toc-otras-formas" class="nav-link" data-scroll-target="#otras-formas"><span class="toc-section-number">3.6</span>  Otras formas</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/aniuxa/posgrado_modelo3/edit/main/P3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/aniuxa/posgrado_modelo3/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -789,8 +790,8 @@ Caused by error in `if (scales$x$map(comp[1]) == data$group[1] | manual) ...`:
 </section>
 </section>
 </section>
-<section id="factores-de-expansión" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="factores-de-expansión"><span class="header-section-number">3.5</span> Factores de expansión</h2>
+<section id="factores-de-expansión-y-diseño-muestral" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="factores-de-expansión-y-diseño-muestral"><span class="header-section-number">3.5</span> Factores de expansión y diseño muestral</h2>
 <section id="la-función-tally" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="la-función-tally"><span class="header-section-number">3.5.1</span> La función tally</h3>
 <p>El comando <code>tabyl()</code> del paquete <code>{janitor}</code> es muy útil pero no es compatible con los factores del expansión. En realidad, <code>tabyl()</code> nos ahorra un poco el hecho de tener que agrupar nuestra base en categorías y luego hacer un conteo para cada una de ellas. <code>tally()</code> es un comando que nos hace ese conteo y <code>group_by()</code> nos agrupa las observaciones de nuestra base de datos para hacer cualquier operación.</p>
@@ -822,9 +823,8 @@ Caused by error in `if (scales$x$map(comp[1]) == data$group[1] | manual) ...`:
 </div>
 </div>
 </section>
-</section>
-<section id="otras-formas" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="otras-formas"><span class="header-section-number">3.6</span> Otras formas</h2>
+<section id="otras-formas" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="otras-formas"><span class="header-section-number">3.5.2</span> Otras formas</h3>
 <p>La función <code>count()</code> también permite dar pesos</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>tlaxt322  <span class="sc">%&gt;%</span> </span>
@@ -908,7 +908,9 @@ Caused by error in `if (scales$x$map(comp[1]) == data$group[1] | manual) ...`:
                      Total 100.0% 100.0%</code></pre>
 </div>
 </div>
-<p>#Diseño complejo</p>
+</section>
+<section id="diseño-complejo" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="diseño-complejo"><span class="header-section-number">3.5.3</span> Diseño complejo</h3>
 <p>Hay muchos diseños muestrales, asumiremos el diseño simple, pero hay que revisar la documentación de la base</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestreo aleatorio</span></span>
@@ -999,6 +1001,7 @@ Caused by error in `if (scales$x$map(comp[1]) == data$group[1] | manual) ...`:
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
