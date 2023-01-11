@@ -24,4 +24,18 @@ Después de la sesión 1 y 2
 
 ### Cheat Sheets
 
+-   RStudio IDE: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf>
+
+-   dplyr: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf>
+
+
+## Sesión 2
+
+### Video
+
+{{< video https://youtu.be/6aOjB4zJElg >}}
+
+### Cheat Sheets
+
 -   ggplot2: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf>
+

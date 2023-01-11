@@ -221,6 +221,13 @@
     "href": "anexo.html#sesión-1",
     "title": "Material anexo",
     "section": "Sesión 1",
-    "text": "Sesión 1\n\nVideo\n\n\n\nCheat Sheets\n\nggplot2: https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf"
+    "text": "Sesión 1\n\nVideo\n\n\n\nCheat Sheets\n\nRStudio IDE: https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf\ndplyr: https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf"
+  },
+  {
+    "objectID": "anexo.html#sesión-2",
+    "href": "anexo.html#sesión-2",
+    "title": "Material anexo",
+    "section": "Sesión 2",
+    "text": "Sesión 2\n\nVideo\n\n\n\nCheat Sheets\n\nggplot2: https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf"
   }
 ]
