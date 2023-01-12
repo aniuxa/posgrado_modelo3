@@ -1,4 +1,4 @@
-# Repaso de visualización de datos y `{ggplot2}` 
+# Repaso de visualización de datos y `{ggplot2}`
 
 ## Paquetes
 
@@ -215,7 +215,6 @@ g2 ## imprime el lienzo
 g2 + geom_histogram() 
 ```
 
-
 ##### Densidad
 
 ```{r}
@@ -246,7 +245,6 @@ tlaxt322 %>%
       y = ing_x_hrs) +
   geom_point()
 ```
-
 
 Vamos a terminar con un código que resume mucho de lo que hemos visto hoy:
 

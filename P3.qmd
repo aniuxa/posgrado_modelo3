@@ -23,7 +23,6 @@ pacman::p_load(tidyverse,
                car)
 ```
 
-
 ## Cargando los datos
 
 Desde STATA
@@ -44,7 +43,6 @@ ICI_2021 <- read_excel("./datos/ICI_2021.xlsx",
   clean_names()
 
 ```
-
 
 ## Hipótesis e intervalos de confianza
 
@@ -80,7 +78,7 @@ tlaxt322 %>%
   filter(clase2==1) %>% #Filtro de ocupados
   filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
   with(
-    t.test(tlaxt322$ing_x_hrs, mu=40)
+    t.test(ing_x_hrs, mu=40)
     )
 ```
 
@@ -91,7 +89,7 @@ tlaxt322 %>%
   filter(clase2==1) %>% #Filtro de ocupados
   filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
   with(
-  t.test(tlaxt322$ing_x_hrs, mu=40, alternative = "two.sided") #default y de dos colas
+  t.test(ing_x_hrs, mu=40, alternative = "two.sided") #default y de dos colas
     )
 ```
 
@@ -100,7 +98,7 @@ tlaxt322 %>%
   filter(clase2==1) %>% #Filtro de ocupados
   filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
   with(
-  t.test(tlaxt322$ing_x_hrs, mu=40, alternative = "greater") # cola derecha
+  t.test(ing_x_hrs, mu=40, alternative = "greater") # cola derecha
     )
 ```
 
@@ -109,7 +107,7 @@ tlaxt322 %>%
   filter(clase2==1) %>% #Filtro de ocupados
   filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
   with(
-  t.test(tlaxt322$ing_x_hrs, mu=40, alternative = "less") # cola izquierda
+  t.test(ing_x_hrs, mu=40, alternative = "less") # cola izquierda
     )
 ```
 
@@ -122,7 +120,7 @@ t.test0<-tlaxt322 %>%
   filter(clase2==1) %>% #Filtro de ocupados
   filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
   with(
-    t.test(tlaxt322$ing_x_hrs, mu=40)
+    t.test(ing_x_hrs, mu=40)
     )
 ```
 
@@ -136,9 +134,9 @@ t.test0
 broom::tidy(t.test0)
 ```
 
-La función "tidy()" hace que el resultado se vuelva un "tibble", una tabla muy compatible con el tidyverse. Esto puede ser útil cuando queremos ir comparando estimaciones.
+La función `tidy()` hace que el resultado se vuelva un `tibble`, una tabla muy compatible con el tidyverse. Esto puede ser útil cuando queremos ir comparando estimaciones.
 
-Anteriormente vimos con base cómo hacer inferencia. El paquete "infer" tiene también elementos para inferencia, pero en formato más compatible con tidyverse.
+Anteriormente vimos con base cómo hacer inferencia. El paquete `{infer}` tiene también elementos para inferencia, pero en formato más compatible con tidyverse.
 
 ```{r}
 tlaxt322 %>% 
@@ -233,14 +231,87 @@ tlaxt322 %>%
 
 ```
 
+## Estimaciones bivariadas
+
+### Diferencias de medias por grupos
+¿Podemos decir, con significancia estadística que los valores medios de una variable son diferentes entre los grupos?
+
+```{r}
+tlaxt322%>% 
+    filter(clase2==1) %>% # nos quedamos con los trabajadores
+    filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos
+    group_by(as_label(sex)) %>%
+    summarise(avg_hrs = mean(ing_x_hrs, na.rm=T))
+
+tlaxt322%>% 
+    filter(clase2==1) %>% # nos quedamos con los trabajadores
+    filter(ing_x_hrs>0) %>% #Filtros de quienes reportaron ingresos 
+    with(
+      t.test(ing_x_hrs~sex)
+      )
+```
+
+Con "infer" sería:
+
+```{r}
+tlaxt322%>% 
+  mutate(sex=as_label(sex)) %>% 
+  infer::t_test(ing_x_hrs ~ sex, order = c("Hombre", "Mujer") )
+```
+
+### Diferencias de proporciones.
+
+En la versión tidy de infer será más fácil hacer la versión de dos proporciones.
 
 
+```{r}
+
+tlaxt322%>% 
+  filter(eda>14 & eda<99) %>% 
+  set_labels(clase1, labels=etiqueta_pea) %>% 
+  mutate(clase1=as_label(clase1)) %>% 
+  mutate(sex=as_label(sex)) %>% 
+  infer::prop_test(clase1 ~ sex ,
+                   alternative="greater",
+                   success = "PEA", # necesitamos establecer el éxito
+                   order = c("Hombre", "Mujer"),
+                   z=TRUE)
+
+```
+
+
+## Estimación de varianzas y sus pruebas de hipótesis
+
+Para poder hacer inferencia sobre la varianza utilizamos el comando `varTest()` del paquete `{DescTools}`
+
+```{r}
+tlaxt322%>% 
+    filter(clase2==1) %>% 
+      with(
+        DescTools::VarTest(ing_x_hrs)
+        )
+
+```
+
+Podemos también decir algo sobre el valor objetivo de nuestra hipótesis
+```{r}
+tlaxt322%>% 
+    filter(clase2==1) %>% 
+      with(
+        VarTest(ing_x_hrs, sigma.squared = 100)
+        )
+
+```
+
+
+$$ H_o:\sigma=100 $$
 
 ## Análisis de varianza
-Análisis de varianza. Haremos la versión  más simple. Para ver el efecto de un factor sobre una variable cualitativa (oneway).
-Revisaremos si la región de residencia de los trabajadores tiene un efecto en la distribución de los ingresos por trabajo. 
+
+Análisis de varianza. Haremos la versión más simple. Para ver el efecto de un factor sobre una variable cualitativa (oneway). Revisaremos si la región de residencia de los trabajadores tiene un efecto en la distribución de los ingresos por trabajo.
 
 ### Primero un gráfico
+
 la ANOVA se basa en que nuestra variable es normal. Quitaremos los outliers
 
 ```{r}
@@ -255,12 +326,12 @@ lienzo_bi + geom_density()
 
 La prueba ANOVA o análisis de varianza, nos dice cuánto de nuestra variable se ve explicado por un factor.
 
-
 $$H_o:\mu_1=\mu_2=\mu_3=\mu_4$$
 
 $$H_a:\text{Alguna de las medias es diferente}$$
 
 En los modelos es mul útil guardar nuestros resultados como un objeto
+
 ```{r}
 anova<-tlaxt322  %>% 
     filter(clase2==1) %>% 
@@ -275,18 +346,19 @@ Con tidy:
 tidy(anova)
 ```
 
-
 ### Comparación entre grupos
+
 ¿si es significativo cuáles diferencias entre los grupos lo son?
+
 ```{r}
 TukeyHSD(anova)
 ```
 
 ### Supuestos de ANOVA
 
-* Las observaciones se obtienen de forma independiente y aleatoria de la población definida por los niveles del factor
-* Los datos de cada nivel de factor se distribuyen normalmente.
-* Estas poblaciones normales tienen una varianza común. 
+-   Las observaciones se obtienen de forma independiente y aleatoria de la población definida por los niveles del factor
+-   Los datos de cada nivel de factor se distribuyen normalmente.
+-   Estas poblaciones normales tienen una varianza común.
 
 ```{r}
 #Prueba Bartlett para ver si las varianzas son iguales
@@ -297,6 +369,7 @@ tlaxt322  %>%
 
 
 ```
+
 La prueba tiene una Ho "Las varianzas son iguales"
 
 ```{r}
@@ -308,14 +381,15 @@ tlaxt322  %>%
     ks.test(ing_x_hrs, "pnorm", mean=mean(ing_x_hrs), sd=sd(ing_x_hrs))
     )
 ```
-La prueba tiene una Ho "La variable es normal"
 
+La prueba tiene una Ho "La variable es normal"
 
 **¿Qué hacer?**
 
 ### Kruskal-Wallis test
 
 Hay una prueba muy parecida que se basa en el orden de las observaciones, y se lee muy parecida a la ANOVA
+
 ```{r}
 kruskal<-tlaxt322  %>% 
     filter(clase2==1) %>% 
@@ -327,6 +401,7 @@ kruskal
 ```
 
 Para ver las comparaciones tenemos que usar el `DunnTest()`, del paquete `{DescTools}`
+
 ```{r}
 
 tlaxt322  %>% 
@@ -337,8 +412,8 @@ tlaxt322  %>%
 
 ```
 
-
 #### Un gráfico coqueto:
+
 Se hace con ggpubr
 
 ```{r}
@@ -369,13 +444,11 @@ tlaxt322  %>%
 
 ```
 
-
-
 ## Factores de expansión y diseño muestral
 
 ### La función tally
 
-El comando `tabyl()` del paquete `{janitor}` es muy útil pero no es compatible con los factores del expansión. En realidad, `tabyl()` nos ahorra un poco el hecho de tener que agrupar nuestra base en categorías y luego hacer un conteo para cada una de ellas. `tally()` es un comando que nos hace ese conteo y `group_by()` nos agrupa las observaciones de nuestra base de datos para hacer cualquier operación. 
+El comando `tabyl()` del paquete `{janitor}` es muy útil pero no es compatible con los factores del expansión. En realidad, `tabyl()` nos ahorra un poco el hecho de tener que agrupar nuestra base en categorías y luego hacer un conteo para cada una de ellas. `tally()` es un comando que nos hace ese conteo y `group_by()` nos agrupa las observaciones de nuestra base de datos para hacer cualquier operación.
 
 ```{r}
 tlaxt322  %>% 
@@ -385,6 +458,7 @@ tlaxt322  %>%
 ```
 
 Podemos usar funciones de `adorn_...` de `{janitor}`
+
 ```{r}
 tlaxt322  %>% 
  group_by(as_label(sex)) %>% 
@@ -394,8 +468,8 @@ tlaxt322  %>%
   adorn_pct_formatting()
 ```
 
-
 ### Otras formas
+
 La función `count()` también permite dar pesos
 
 ```{r}
@@ -405,6 +479,7 @@ tlaxt322  %>%
 ```
 
 Es compatible con etiquetas
+
 ```{r}
 tlaxt322  %>% 
   count(as_label(sex), as_label(niv_ins),  wt = fac_tri) 
@@ -434,6 +509,7 @@ tlaxt322  %>%
 ### Diseño complejo
 
 Hay muchos diseños muestrales, asumiremos el diseño simple, pero hay que revisar la documentación de la base
+
 ```{r}
 # Muestreo aleatorio
 tlax_srvy <- tlaxt322  %>%
@@ -442,6 +518,7 @@ tlax_srvy <- tlaxt322  %>%
 ```
 
 Si revisamos las encuestas tiene un diseño complejo, hay estratos y unidades primarias de muestreo
+
 ```{r}
 
 # Muestreo estratificado
@@ -453,7 +530,6 @@ tlax_srvy <- tlaxt322  %>%
     nest = TRUE)
 
 ```
-
 
 Como vemos esto es un archivo bien grande, por lo que mejor vamos a seleccionar un par de variables:
 
@@ -471,6 +547,7 @@ tlax_srvy <- tlaxt322  %>%
 ```
 
 Para una media ponderada
+
 ```{r}
 tlax_srvy %>%
   filter(eda>14 & eda<99) %>% #filtro de edad para tabulados
@@ -493,7 +570,6 @@ tlax_srvy %>%
                                   vartype = "ci") )
 
 ```
-
 
 ```{r}
 tlax_srvy %>%
