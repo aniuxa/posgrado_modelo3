@@ -4,16 +4,13 @@
 
 {{< video https://youtu.be/YkN5urybh2A >}}
 
-
 ## Instalación en OS
 
 {{< video https://youtu.be/icWV8jzYOtA >}}
 
-
 ## Instalación en PC
 
 {{< video https://youtu.be/TNSQikMfgJI >}}
-
 
 ## Ojo
 

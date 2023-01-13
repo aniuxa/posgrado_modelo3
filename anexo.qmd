@@ -28,7 +28,6 @@ Después de la sesión 1 y 2
 
 -   dplyr: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf>
 
-
 ## Sesión 2
 
 ### Video
@@ -39,3 +38,8 @@ Después de la sesión 1 y 2
 
 -   ggplot2: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf>
 
+## Sesión 3
+
+### Video
+
+{{< video https://youtu.be/B51jPamdySw >}}

@@ -16,6 +16,8 @@ book:
     - instala.qmd
     - P1.qmd
     - P2.qmd
+    - P3.qmd
+    - P4.qmd
     - anexo.qmd
   
 format:
