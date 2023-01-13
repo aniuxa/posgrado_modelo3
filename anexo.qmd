@@ -16,6 +16,12 @@ Después de la sesión 1 y 2
 
 [Cuestionario](https://forms.gle/EQnP9SvpWoTWLRm86)
 
+### Segundo cuestionario
+
+Después de la sesión 3 y 4
+
+[Cuestionario](https://forms.gle/xtLmmXPBHDR273sv5)
+
 ## Sesión 1
 
 ### Video
@@ -43,3 +49,10 @@ Después de la sesión 1 y 2
 ### Video
 
 {{< video https://youtu.be/B51jPamdySw >}}
+
+## Sesión 4
+
+### Video
+
+{{< video https://youtu.be/g68kbzGLwp4 >}}
+

@@ -190,15 +190,13 @@ tlax_srvy %>%
             total = survey_total() ) # totales
 ```
 
-
-
 ## Estimación de varianzas y sus pruebas de hipótesis
 
 Para poder hacer inferencia sobre la varianza utilizamos el comando `varTest()` del paquete `{DescTools}`
 
 ```{r}
 tlaxt322%>% 
-    filter(clase2==1) %>% 
+    filter(ing_x_hrs>0) %>% 
       with(
         DescTools::VarTest(ing_x_hrs)
         )
@@ -209,7 +207,7 @@ Podemos también decir algo sobre el valor objetivo de nuestra hipótesis
 
 ```{r}
 tlaxt322%>% 
-    filter(clase2==1) %>% 
+    filter(ing_x_hrs>0) %>% 
       with(
         VarTest(ing_x_hrs, sigma.squared = 100)
         )
@@ -217,8 +215,6 @@ tlaxt322%>%
 ```
 
 $$ H_o:\sigma=100 $$
-
-
 
 ## Análisis de varianza
 
@@ -248,8 +244,10 @@ En los modelos es mul útil guardar nuestros resultados como un objeto
 
 ```{r}
 anova<-tlaxt322  %>% 
-    filter(clase2==1) %>% 
-      with(aov(ing_x_hrs ~ as_factor(t_loc_tri)))
+    filter(ing_x_hrs>0) %>% 
+      with(
+        aov(log(ing_x_hrs) ~ as_factor(t_loc_tri))
+           )
 
 summary(anova)
 ```
@@ -292,7 +290,10 @@ tlaxt322  %>%
   filter(clase2==1) %>% 
   filter(ing_x_hrs>0) %>% 
  with(
-    ks.test(ing_x_hrs, "pnorm", mean=mean(ing_x_hrs), sd=sd(ing_x_hrs))
+    ks.test(log(ing_x_hrs),
+            "pnorm",
+            mean=mean(log(ing_x_hrs)),
+            sd=sd(log(ing_x_hrs)))
     )
 ```
 
@@ -306,7 +307,7 @@ Hay una prueba muy parecida que se basa en el orden de las observaciones, y se l
 
 ```{r}
 kruskal<-tlaxt322  %>% 
-    filter(clase2==1) %>% 
+    filter(ing_x_hrs>0) %>% 
       with(
         kruskal.test(ing_x_hrs ~ as_factor(t_loc_tri))
         )
@@ -319,7 +320,7 @@ Para ver las comparaciones tenemos que usar el `DunnTest()`, del paquete `{DescT
 ```{r}
 
 tlaxt322  %>% 
-    filter(clase2==1) %>% 
+    filter(ing_x_hrs>0) %>% 
       with(
         DescTools::DunnTest(ing_x_hrs ~ as_factor(t_loc_tri))
         )
@@ -355,101 +356,6 @@ tlaxt322  %>%
   stat_compare_means(comparisons = comparaciones, label = "p.signif")+ # Add significance levels
   stat_compare_means(label.y = 500)     # Add global the p-value 
 
-
-```
-
-## Introducción a la regresión lineal 
-
-**La relación entre dos variables **
-
-En términos *mincerianos*, los ingresos estarían explicados por la escolaridad y la experiencia...
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% 
-  filter(ing_x_hrs>0) %>% 
-  filter(anios_esc<99) %>% 
-  ggplot() +
-    aes(x=anios_esc, y=log(ing_x_hrs)) + 
-  geom_point()
-
-```
-
-Cuando tenemos muchos casos es útil la opción "jitter"
-
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% 
-  filter(ing_x_hrs>0) %>% 
-  filter(anios_esc<99) %>% 
-  ggplot() +
-    aes(x=anios_esc, y=log(ing_x_hrs)) + 
-  geom_jitter()
-
-```
-También cambiar un poquito la transparencia...
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% 
-  filter(ing_x_hrs>0) %>% 
-  filter(anios_esc<99) %>% 
-  ggplot() +
-    aes(x=anios_esc, y=log(ing_x_hrs), alpha=I(0.5)) + 
-  geom_jitter()
-
-```
-
-¿Cómo se ve la línea MCO ajustada por estos elementos?
-
-```{r}
-tlaxt322 %>% 
-  filter(clase2==1) %>% 
-  filter(ing_x_hrs>0) %>% 
-  filter(anios_esc<99) %>% 
-  ggplot() +
-    aes(x=anios_esc, y=log(ing_x_hrs), alpha=I(0.5)) + 
-  geom_jitter()+
-  geom_smooth(method = lm)
-
-```
-
-
-¿cómo se ajusta esa línea?
-
-
-```{r}
-model<-tlaxt322 %>% 
-  filter(clase2==1) %>% 
-  filter(ing_x_hrs>0) %>% 
-  filter(anios_esc<99) %>% 
-  with(
-    lm(log(ing_x_hrs)~ anios_esc)
-  )
-
-model
-```
-
-Guardarlo en un objeto sirve de mucho porque le podemos "preguntar" cosas
-
-```{r}
-
-summary(model) # da todo menos la anova de la regresión
-confint(model) # da los intervalos de confianza
-anova(model) # esto sí da la anova de la regresión.
-
-```
-
-Para ver esto más guapo:
-
-```{r}
-model %>%
-   gtsummary::tbl_regression() 
-  #%>% 
-  # add_significance_stars() %>% 
-  # add_n() %>% 
-  # add_glance_table()
 
 ```
 
