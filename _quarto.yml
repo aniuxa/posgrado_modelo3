@@ -18,6 +18,7 @@ book:
     - P2.qmd
     - P3.qmd
     - P4.qmd
+    - P5.qmd
     - anexo.qmd
   
 format:

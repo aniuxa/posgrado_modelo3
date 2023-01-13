@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>p5</title>
+<title>Inferencia e introducción a los modelos estadísticos con R - 5&nbsp; Introducción a los modelos de regresión</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,33 +86,185 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="P5_files/libs/clipboard/clipboard.min.js"></script>
-<script src="P5_files/libs/quarto-html/quarto.js"></script>
-<script src="P5_files/libs/quarto-html/popper.min.js"></script>
-<script src="P5_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="P5_files/libs/quarto-html/anchor.min.js"></script>
-<link href="P5_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="P5_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="P5_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="P5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="P5_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./anexo.html" rel="next">
+<link href="./P4.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a los modelos de regresión</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Inferencia e introducción a los modelos estadísticos con R</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/aniuxa/posgrado_modelo3/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introducción al curso</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./instala.html" class="sidebar-item-text sidebar-link">Instalación de R y Rstudio</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción: <code>{dplyr}</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Repaso de visualización de datos y <code>{ggplot2}</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introducción a la inferencia</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la inferencia (II)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./P5.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a los modelos de regresión</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anexo.html" class="sidebar-item-text sidebar-link">Material anexo</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link active" data-scroll-target="#paquetes"><span class="toc-section-number">5.1</span>  Paquetes</a></li>
+  <li><a href="#cargando-los-datos" id="toc-cargando-los-datos" class="nav-link" data-scroll-target="#cargando-los-datos"><span class="toc-section-number">5.2</span>  Cargando los datos</a></li>
+  <li><a href="#introducción-a-la-regresión-lineal" id="toc-introducción-a-la-regresión-lineal" class="nav-link" data-scroll-target="#introducción-a-la-regresión-lineal"><span class="toc-section-number">5.3</span>  Introducción a la regresión lineal</a></li>
+  <li><a href="#prueba-de-hipótesis-para-la-correlación" id="toc-prueba-de-hipótesis-para-la-correlación" class="nav-link" data-scroll-target="#prueba-de-hipótesis-para-la-correlación"><span class="toc-section-number">5.4</span>  Prueba de hipótesis para la correlación</a></li>
+  <li><a href="#cómo-se-ajusta-la-línea" id="toc-cómo-se-ajusta-la-línea" class="nav-link" data-scroll-target="#cómo-se-ajusta-la-línea"><span class="toc-section-number">5.5</span>  ¿cómo se ajusta la línea?</a></li>
+  <li><a href="#diagnósticos" id="toc-diagnósticos" class="nav-link" data-scroll-target="#diagnósticos"><span class="toc-section-number">5.6</span>  Diagnósticos</a>
+  <ul class="collapse">
+  <li><a href="#outliers-y-normalidad" id="toc-outliers-y-normalidad" class="nav-link" data-scroll-target="#outliers-y-normalidad"><span class="toc-section-number">5.6.1</span>  Outliers y Normalidad</a></li>
+  <li><a href="#homocedasticidad" id="toc-homocedasticidad" class="nav-link" data-scroll-target="#homocedasticidad"><span class="toc-section-number">5.6.2</span>  Homocedasticidad</a></li>
+  <li><a href="#con-el-paquete-performance" id="toc-con-el-paquete-performance" class="nav-link" data-scroll-target="#con-el-paquete-performance"><span class="toc-section-number">5.6.3</span>  Con el paquete <code>{performance}</code></a></li>
+  </ul></li>
+  <li><a href="#regresión-lineal-múltiple" id="toc-regresión-lineal-múltiple" class="nav-link" data-scroll-target="#regresión-lineal-múltiple"><span class="toc-section-number">5.7</span>  Regresión Lineal múltiple</a>
+  <ul class="collapse">
+  <li><a href="#agregando-una-variable-categórica" id="toc-agregando-una-variable-categórica" class="nav-link" data-scroll-target="#agregando-una-variable-categórica"><span class="toc-section-number">5.7.1</span>  Agregando una variable categórica</a></li>
+  <li><a href="#otra-variable-cuantitativa" id="toc-otra-variable-cuantitativa" class="nav-link" data-scroll-target="#otra-variable-cuantitativa"><span class="toc-section-number">5.7.2</span>  Otra variable cuantitativa</a></li>
+  <li><a href="#otros-supuestos" id="toc-otros-supuestos" class="nav-link" data-scroll-target="#otros-supuestos"><span class="toc-section-number">5.7.3</span>  Otros supuestos</a></li>
+  <li><a href="#paquete-jtools" id="toc-paquete-jtools" class="nav-link" data-scroll-target="#paquete-jtools"><span class="toc-section-number">5.7.4</span>  Paquete <code>{jtools}</code></a></li>
+  </ul></li>
+  <li><a href="#post-estimación" id="toc-post-estimación" class="nav-link" data-scroll-target="#post-estimación"><span class="toc-section-number">5.8</span>  Post-estimación</a>
+  <ul class="collapse">
+  <li><a href="#las-predicciones" id="toc-las-predicciones" class="nav-link" data-scroll-target="#las-predicciones"><span class="toc-section-number">5.8.1</span>  Las predicciones</a></li>
+  <li><a href="#efectos-marginales" id="toc-efectos-marginales" class="nav-link" data-scroll-target="#efectos-marginales"><span class="toc-section-number">5.8.2</span>  Efectos marginales</a></li>
+  </ul></li>
+  <li><a href="#extensiones-del-modelo-de-regresión" id="toc-extensiones-del-modelo-de-regresión" class="nav-link" data-scroll-target="#extensiones-del-modelo-de-regresión"><span class="toc-section-number">5.9</span>  Extensiones del modelo de regresión</a>
+  <ul class="collapse">
+  <li><a href="#introducción-a-las-interacciones" id="toc-introducción-a-las-interacciones" class="nav-link" data-scroll-target="#introducción-a-las-interacciones"><span class="toc-section-number">5.9.1</span>  Introducción a las interacciones</a></li>
+  <li><a href="#efectos-no-lineales" id="toc-efectos-no-lineales" class="nav-link" data-scroll-target="#efectos-no-lineales"><span class="toc-section-number">5.9.2</span>  Efectos no lineales</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/aniuxa/posgrado_modelo3/edit/main/P5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/aniuxa/posgrado_modelo3/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introducción a los modelos de regresión</span></h1>
+</div>
 
 
-<section id="introducción-a-la-inferencia-ii" class="level1">
-<h1>Introducción a la inferencia (II)</h1>
-<section id="paquetes" class="level2">
-<h2 class="anchored" data-anchor-id="paquetes">Paquetes</h2>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="paquetes" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="paquetes"><span class="header-section-number">5.1</span> Paquetes</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)<span class="co">#instala pacman si se requiere</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -142,8 +294,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>               huxtable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cargando-los-datos" class="level2">
-<h2 class="anchored" data-anchor-id="cargando-los-datos">Cargando los datos</h2>
+<section id="cargando-los-datos" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="cargando-los-datos"><span class="header-section-number">5.2</span> Cargando los datos</h2>
 <p>Desde STATA y haciendo filtros para hacer el código más corto:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"./datos/tlaxt322.dta"</span>) <span class="sc">%&gt;%</span> </span>
@@ -156,8 +308,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_ing_x_hrs=</span><span class="fu">log</span>(ing_x_hrs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="introducción-a-la-regresión-lineal" class="level2">
-<h2 class="anchored" data-anchor-id="introducción-a-la-regresión-lineal">Introducción a la regresión lineal</h2>
+<section id="introducción-a-la-regresión-lineal" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="introducción-a-la-regresión-lineal"><span class="header-section-number">5.3</span> Introducción a la regresión lineal</h2>
 <p><strong>La relación entre dos variables</strong></p>
 <p>En términos <em>mincerianos</em>, los ingresos estarían explicados por la escolaridad y la experiencia…</p>
 <div class="cell">
@@ -205,8 +357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="prueba-de-hipótesis-para-la-correlación" class="level2">
-<h2 class="anchored" data-anchor-id="prueba-de-hipótesis-para-la-correlación">Prueba de hipótesis para la correlación</h2>
+<section id="prueba-de-hipótesis-para-la-correlación" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="prueba-de-hipótesis-para-la-correlación"><span class="header-section-number">5.4</span> Prueba de hipótesis para la correlación</h2>
 <p>Una prueba de hipotésis sobe la correlación</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cor_test<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span> </span>
@@ -244,8 +396,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="cómo-se-ajusta-la-línea" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-se-ajusta-la-línea">¿cómo se ajusta la línea?</h2>
+<section id="cómo-se-ajusta-la-línea" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="cómo-se-ajusta-la-línea"><span class="header-section-number">5.5</span> ¿cómo se ajusta la línea?</h2>
 <p>Este sería el modelo simple</p>
 <p><span class="math display">\[y=\beta_o+\beta_1x +\epsilon\]</span></p>
 <p>Donde los parámetros <span class="math inline">\(\beta_o\)</span> y <span class="math inline">\(\beta_1\)</span> describen la pendiente y el intercepto de la población, respectivamente.</p>
@@ -315,12 +467,12 @@ anios_esc   0.05517928 0.06605823</code></pre>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>   gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="pivwquqlcb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ffallhpevt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#pivwquqlcb) .gt_table {
+:where(#ffallhpevt) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -345,7 +497,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_heading {
+:where(#ffallhpevt) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -357,12 +509,12 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_caption {
+:where(#ffallhpevt) .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#pivwquqlcb) .gt_title {
+:where(#ffallhpevt) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -374,7 +526,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#pivwquqlcb) .gt_subtitle {
+:where(#ffallhpevt) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -386,13 +538,13 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-top-width: 0;
 }
 
-:where(#pivwquqlcb) .gt_bottom_border {
+:where(#ffallhpevt) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_col_headings {
+:where(#ffallhpevt) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -407,7 +559,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_col_heading {
+:where(#ffallhpevt) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -427,7 +579,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   overflow-x: hidden;
 }
 
-:where(#pivwquqlcb) .gt_column_spanner_outer {
+:where(#ffallhpevt) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -439,15 +591,15 @@ anios_esc   0.05517928 0.06605823</code></pre>
   padding-right: 4px;
 }
 
-:where(#pivwquqlcb) .gt_column_spanner_outer:first-child {
+:where(#ffallhpevt) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#pivwquqlcb) .gt_column_spanner_outer:last-child {
+:where(#ffallhpevt) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#pivwquqlcb) .gt_column_spanner {
+:where(#ffallhpevt) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -459,7 +611,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   width: 100%;
 }
 
-:where(#pivwquqlcb) .gt_group_heading {
+:where(#ffallhpevt) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -485,7 +637,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   text-align: left;
 }
 
-:where(#pivwquqlcb) .gt_empty_group_heading {
+:where(#ffallhpevt) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -500,15 +652,15 @@ anios_esc   0.05517928 0.06605823</code></pre>
   vertical-align: middle;
 }
 
-:where(#pivwquqlcb) .gt_from_md > :first-child {
+:where(#ffallhpevt) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#pivwquqlcb) .gt_from_md > :last-child {
+:where(#ffallhpevt) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#pivwquqlcb) .gt_row {
+:where(#ffallhpevt) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -527,7 +679,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   overflow-x: hidden;
 }
 
-:where(#pivwquqlcb) .gt_stub {
+:where(#ffallhpevt) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -540,7 +692,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   padding-right: 5px;
 }
 
-:where(#pivwquqlcb) .gt_stub_row_group {
+:where(#ffallhpevt) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -554,11 +706,11 @@ anios_esc   0.05517928 0.06605823</code></pre>
   vertical-align: top;
 }
 
-:where(#pivwquqlcb) .gt_row_group_first td {
+:where(#ffallhpevt) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#pivwquqlcb) .gt_summary_row {
+:where(#ffallhpevt) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -568,16 +720,16 @@ anios_esc   0.05517928 0.06605823</code></pre>
   padding-right: 5px;
 }
 
-:where(#pivwquqlcb) .gt_first_summary_row {
+:where(#ffallhpevt) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_first_summary_row.thick {
+:where(#ffallhpevt) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#pivwquqlcb) .gt_last_summary_row {
+:where(#ffallhpevt) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -587,7 +739,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_grand_summary_row {
+:where(#ffallhpevt) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -597,7 +749,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   padding-right: 5px;
 }
 
-:where(#pivwquqlcb) .gt_first_grand_summary_row {
+:where(#ffallhpevt) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -607,11 +759,11 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_striped {
+:where(#ffallhpevt) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#pivwquqlcb) .gt_table_body {
+:where(#ffallhpevt) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -620,7 +772,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_footnotes {
+:where(#ffallhpevt) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -634,7 +786,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_footnote {
+:where(#ffallhpevt) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -643,7 +795,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   padding-right: 5px;
 }
 
-:where(#pivwquqlcb) .gt_sourcenotes {
+:where(#ffallhpevt) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -657,7 +809,7 @@ anios_esc   0.05517928 0.06605823</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#pivwquqlcb) .gt_sourcenote {
+:where(#ffallhpevt) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -665,64 +817,64 @@ anios_esc   0.05517928 0.06605823</code></pre>
   padding-right: 5px;
 }
 
-:where(#pivwquqlcb) .gt_left {
+:where(#ffallhpevt) .gt_left {
   text-align: left;
 }
 
-:where(#pivwquqlcb) .gt_center {
+:where(#ffallhpevt) .gt_center {
   text-align: center;
 }
 
-:where(#pivwquqlcb) .gt_right {
+:where(#ffallhpevt) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#pivwquqlcb) .gt_font_normal {
+:where(#ffallhpevt) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#pivwquqlcb) .gt_font_bold {
+:where(#ffallhpevt) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#pivwquqlcb) .gt_font_italic {
+:where(#ffallhpevt) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#pivwquqlcb) .gt_super {
+:where(#ffallhpevt) .gt_super {
   font-size: 65%;
 }
 
-:where(#pivwquqlcb) .gt_footnote_marks {
+:where(#ffallhpevt) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#pivwquqlcb) .gt_asterisk {
+:where(#ffallhpevt) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#pivwquqlcb) .gt_indent_1 {
+:where(#ffallhpevt) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#pivwquqlcb) .gt_indent_2 {
+:where(#ffallhpevt) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#pivwquqlcb) .gt_indent_3 {
+:where(#ffallhpevt) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#pivwquqlcb) .gt_indent_4 {
+:where(#ffallhpevt) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#pivwquqlcb) .gt_indent_5 {
+:where(#ffallhpevt) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -757,8 +909,8 @@ anios_esc   0.05517928 0.06605823</code></pre>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add_glance_table()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="diagnósticos" class="level2">
-<h2 class="anchored" data-anchor-id="diagnósticos">Diagnósticos</h2>
+<section id="diagnósticos" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="diagnósticos"><span class="header-section-number">5.6</span> Diagnósticos</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -774,8 +926,8 @@ anios_esc   0.05517928 0.06605823</code></pre>
 <p><img src="P5_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="outliers-y-normalidad" class="level3">
-<h3 class="anchored" data-anchor-id="outliers-y-normalidad">Outliers y Normalidad</h3>
+<section id="outliers-y-normalidad" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="outliers-y-normalidad"><span class="header-section-number">5.6.1</span> Outliers y Normalidad</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assessing Outliers</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">outlierTest</span>(modelo) <span class="co"># Bonferonni p-value for most extreme obs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -807,8 +959,8 @@ The following aesthetics were dropped during statistical transformation: sample
 </div>
 </div>
 </section>
-<section id="homocedasticidad" class="level3">
-<h3 class="anchored" data-anchor-id="homocedasticidad">Homocedasticidad</h3>
+<section id="homocedasticidad" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="homocedasticidad"><span class="header-section-number">5.6.2</span> Homocedasticidad</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># non-constant error variance test</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">ncvTest</span>(modelo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -828,8 +980,8 @@ Suggested power transformation:  0.0476972 </code></pre>
 </div>
 </div>
 </section>
-<section id="con-el-paquete-performance" class="level3">
-<h3 class="anchored" data-anchor-id="con-el-paquete-performance">Con el paquete <code>{performance}</code></h3>
+<section id="con-el-paquete-performance" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="con-el-paquete-performance"><span class="header-section-number">5.6.3</span> Con el paquete <code>{performance}</code></h3>
 <p>Hay varios chequeos múltiples útiles en este paquete:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_model</span>(modelo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -846,10 +998,10 @@ Suggested power transformation:  0.0476972 </code></pre>
 </div>
 </section>
 </section>
-<section id="regresión-lineal-múltiple" class="level2">
-<h2 class="anchored" data-anchor-id="regresión-lineal-múltiple">Regresión Lineal múltiple</h2>
-<section id="agregando-una-variable-categórica" class="level3">
-<h3 class="anchored" data-anchor-id="agregando-una-variable-categórica">Agregando una variable categórica</h3>
+<section id="regresión-lineal-múltiple" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="regresión-lineal-múltiple"><span class="header-section-number">5.7</span> Regresión Lineal múltiple</h2>
+<section id="agregando-una-variable-categórica" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="agregando-una-variable-categórica"><span class="header-section-number">5.7.1</span> Agregando una variable categórica</h3>
 <p>¿Es igual la relación entre hombres y mujeres con los ingresos y la escolaridad?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tlaxt322 <span class="sc">%&gt;%</span> </span>
@@ -947,8 +1099,8 @@ F-statistic: 260.2 on 2 and 3625 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="otra-variable-cuantitativa" class="level3">
-<h3 class="anchored" data-anchor-id="otra-variable-cuantitativa">Otra variable cuantitativa</h3>
+<section id="otra-variable-cuantitativa" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="otra-variable-cuantitativa"><span class="header-section-number">5.7.2</span> Otra variable cuantitativa</h3>
 <p>Podemos seguir añadiendo variables sólo “sumando” en la función</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>modelo2<span class="ot">&lt;-</span> tlaxt322 <span class="sc">%&gt;%</span> </span>
@@ -999,8 +1151,8 @@ F-statistic: 191.1 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Hoy que tenemos más variables podemos hablar de revisar dos supuestos más.</p>
 </section>
-<section id="otros-supuestos" class="level3">
-<h3 class="anchored" data-anchor-id="otros-supuestos">Otros supuestos</h3>
+<section id="otros-supuestos" class="level3" data-number="5.7.3">
+<h3 data-number="5.7.3" class="anchored" data-anchor-id="otros-supuestos"><span class="header-section-number">5.7.3</span> Otros supuestos</h3>
 <p>Además de los supuestos de la regresión simple, podemos revisar estos otros. De nuevo, usaremos el paquete <code>{car}</code></p>
 <ol type="1">
 <li><p>Linealidad en los parámetros (será más díficil entre más variables tengamos)</p></li>
@@ -1016,8 +1168,8 @@ F-statistic: 191.1 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="paquete-jtools" class="level3">
-<h3 class="anchored" data-anchor-id="paquete-jtools">Paquete <code>{jtools}</code></h3>
+<section id="paquete-jtools" class="level3" data-number="5.7.4">
+<h3 data-number="5.7.4" class="anchored" data-anchor-id="paquete-jtools"><span class="header-section-number">5.7.4</span> Paquete <code>{jtools}</code></h3>
 <p>Un solo modelo:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>jtools<span class="sc">::</span><span class="fu">summ</span>(modelo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1291,10 +1443,10 @@ F-statistic: 191.1 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </section>
 </section>
-<section id="post-estimación" class="level2">
-<h2 class="anchored" data-anchor-id="post-estimación">Post-estimación</h2>
-<section id="las-predicciones" class="level3">
-<h3 class="anchored" data-anchor-id="las-predicciones">Las predicciones</h3>
+<section id="post-estimación" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="post-estimación"><span class="header-section-number">5.8</span> Post-estimación</h2>
+<section id="las-predicciones" class="level3" data-number="5.8.1">
+<h3 data-number="5.8.1" class="anchored" data-anchor-id="las-predicciones"><span class="header-section-number">5.8.1</span> Las predicciones</h3>
 <p>Unos de los usos más comunes de los modelos estadísticos es la predicción</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">plot_model</span>(modelo2, <span class="at">type=</span><span class="st">"pred"</span>, <span class="at">terms =</span> <span class="st">"anios_esc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1317,8 +1469,8 @@ F-statistic: 191.1 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="efectos-marginales" class="level3">
-<h3 class="anchored" data-anchor-id="efectos-marginales">Efectos marginales</h3>
+<section id="efectos-marginales" class="level3" data-number="5.8.2">
+<h3 data-number="5.8.2" class="anchored" data-anchor-id="efectos-marginales"><span class="header-section-number">5.8.2</span> Efectos marginales</h3>
 <p>Con los efectos marginales, por otro lado medimos el efecto promedio, dejando el resto de variables constantes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(modelo2, <span class="at">type=</span><span class="st">"eff"</span>, <span class="at">terms =</span> <span class="st">"anios_esc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1421,10 +1573,10 @@ F-statistic: 191.1 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </section>
 </section>
-<section id="extensiones-del-modelo-de-regresión" class="level2">
-<h2 class="anchored" data-anchor-id="extensiones-del-modelo-de-regresión">Extensiones del modelo de regresión</h2>
-<section id="introducción-a-las-interacciones" class="level3">
-<h3 class="anchored" data-anchor-id="introducción-a-las-interacciones">Introducción a las interacciones</h3>
+<section id="extensiones-del-modelo-de-regresión" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="extensiones-del-modelo-de-regresión"><span class="header-section-number">5.9</span> Extensiones del modelo de regresión</h2>
+<section id="introducción-a-las-interacciones" class="level3" data-number="5.9.1">
+<h3 data-number="5.9.1" class="anchored" data-anchor-id="introducción-a-las-interacciones"><span class="header-section-number">5.9.1</span> Introducción a las interacciones</h3>
 <p>Muchas veces las variables explicativas van a tener relación entre sí. Por ejemplo ¿Las horas tendrá que ver con el sexo y afectan no sólo en intercepto si no también la pendiente? Para ello podemos introducir una interacción</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>modelo_int1<span class="ot">&lt;-</span><span class="fu">lm</span>(log_ing_x_hrs <span class="sc">~</span> anios_esc <span class="sc">*</span> sex , <span class="at">data =</span> tlaxt322, <span class="at">na.action=</span>na.exclude)</span>
@@ -1461,10 +1613,10 @@ F-statistic: 174.4 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="efectos-no-lineales" class="level3">
-<h3 class="anchored" data-anchor-id="efectos-no-lineales">Efectos no lineales</h3>
-<section id="explicitando-el-logaritmo" class="level4">
-<h4 class="anchored" data-anchor-id="explicitando-el-logaritmo">Explicitando el logaritmo</h4>
+<section id="efectos-no-lineales" class="level3" data-number="5.9.2">
+<h3 data-number="5.9.2" class="anchored" data-anchor-id="efectos-no-lineales"><span class="header-section-number">5.9.2</span> Efectos no lineales</h3>
+<section id="explicitando-el-logaritmo" class="level4" data-number="5.9.2.1">
+<h4 data-number="5.9.2.1" class="anchored" data-anchor-id="explicitando-el-logaritmo"><span class="header-section-number">5.9.2.1</span> Explicitando el logaritmo</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>modelo_log<span class="ot">&lt;-</span>tlaxt322 <span class="sc">%&gt;%</span> </span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(</span>
@@ -1504,8 +1656,8 @@ F-statistic: 13.45 on 2 and 3625 DF,  p-value: 1.516e-06</code></pre>
 </div>
 </div>
 </section>
-<section id="efecto-cuadrático-ojo-con-la-sintaxis" class="level4">
-<h4 class="anchored" data-anchor-id="efecto-cuadrático-ojo-con-la-sintaxis">Efecto cuadrático (ojo con la sintaxis)</h4>
+<section id="efecto-cuadrático-ojo-con-la-sintaxis" class="level4" data-number="5.9.2.2">
+<h4 data-number="5.9.2.2" class="anchored" data-anchor-id="efecto-cuadrático-ojo-con-la-sintaxis"><span class="header-section-number">5.9.2.2</span> Efecto cuadrático (ojo con la sintaxis)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>modelo_quadr<span class="ot">&lt;-</span><span class="fu">lm</span>(log_ing_x_hrs <span class="sc">~</span> anios_esc <span class="sc">+</span> <span class="fu">I</span>(anios_esc<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> sex, </span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data=</span>tlaxt322)</span>
@@ -1541,13 +1693,13 @@ F-statistic:   216 on 3 and 3624 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><img src="P5_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
+
+
 </section>
 </section>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1568,6 +1720,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1681,6 +1948,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./P4.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Introducción a la inferencia (II)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./anexo.html" class="pagination-link">
+        <span class="nav-page-text">Material anexo</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

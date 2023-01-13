@@ -1,4 +1,4 @@
-# Introducción a la inferencia (II)
+# Introducción a los modelos de regresión
 
 ## Paquetes
 
