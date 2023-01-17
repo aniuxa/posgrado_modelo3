@@ -30,8 +30,13 @@ pacman::p_load(tidyverse, # conjunto de paquetes tidy
                robustbase, # Para estimaciones de modelos robustos
                sjlabelled, #manejo de etiquetas y edición
                sjPlot, #graficos de estimaciones de modelos 
-               stargazer, #Tablas de estimaciones de modelos
-               srvyr # diseño muestral
+               srvyr, # diseño muestral
+               see,
+               sandwich,
+               jtools,
+               huxtable,
+               effects,
+               ggeffects
 )
 
 
